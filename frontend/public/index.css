@@ -1,0 +1,257 @@
+.fondo{
+    background-color: rgb(150, 212, 15);
+}
+.fondo_header{
+    background-color: blue;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Helvetical, Arial, sans-serif;
+  font-size: 22px;
+  padding-top: 0;
+}
+
+.main {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.main article {
+  padding: 0 10%;
+}
+
+nav.sps {
+  padding: .5em;
+  margin-top: 0;
+  padding-right: 5%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.25s ease;
+  width: 100%;
+  font-size: 20px;
+  text-align: right;
+}
+
+nav.sps--abv {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+nav.sps--blw {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+p.sps {
+  
+  display: block;
+  padding: 0;
+  margin-bottom: 1em;
+  transition: all 0.25s ease-in-out;
+}
+
+p.sps--abv {
+  top: 50px;
+  padding: 1em;
+  color: #922727;
+}
+
+p.sps--blw {
+  top: 0;
+  padding: 1em;
+  color: #333;
+}
+
+p.organic-offset-endfile {
+  height: 350px;
+  content: " ";
+}
+
+hr {
+  background-color: #6f43c0;
+  border: none;
+  height: 1px;
+}
+.bgl{
+    background-image: url('../img/login.jpg');
+    background-size: cover;
+    
+  }
+.espacio {
+    margin-left: 15%;
+  }
+  .fijo {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+  }
+  .empi{
+    margin-top: 4em;
+  }
+  .img1{
+    padding-top: 2%;
+    padding-left: 5%;
+    width: 600px;
+    height: 3s00px;
+  }
+.cate{
+    padding-left: 5%;
+}
+.cate2{
+    padding-left: 2%;
+}
+.img2{
+    margin-left: 15%;
+    width: 360px;
+    height: 360px;
+  }
+.img3{
+    width: 550px;
+    height: 460px;
+  }
+.conlogin{
+
+  width: 60%;
+  margin-left: 20%;
+  
+  padding-bottom: 5%;
+  
+
+}
+.borrosa{
+    filter: blur(5px);
+
+}.fondo {
+  display: block;
+  justify-content: center;
+  background-color: rgba(2, 2, 2, 0.418);
+  border-radius: 25px;
+  
+  }
+.subt{
+    font-size: 18px;
+}
+.s1{
+    height: 630px;
+    width: 100%;
+    filter: grayscale(100%);
+}
+.fondo2 {
+  background-color: rgba(22, 21, 21, 0.185);
+  padding-top: 2%;
+  padding-bottom: 1%;
+}
+.fondo3 {
+  background-color: rgba(255, 255, 255, 0.142);
+  border-radius: 25px;
+ 
+}
+.bgl{
+  background-image: url('../../COMPONENTS/img/fondo_formulario.jfif');
+  background-size: cover;
+  
+}
+.textobimg{
+  text-align: center;
+  font-size: 3.5em;
+}
+.payasito{
+  justify-content: right;
+}
+.pesqui{
+  margin: 18px 120px ;
+}
+.techito{
+  padding-top: 66px;
+}
+.fondo4{
+  display: block;
+  justify-content: left;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.267);
+  border-radius: 25px;
+}
+.navflogin{
+  background-color: #ffffff;
+}
+.bgl_login{
+  background-image: url('../picture/fondologin.jpg');
+  background-size: cover;
+  
+}
+.tamano_imput{
+  width: 87%;
+}
+.tituloformulogin{
+  text-align: center;
+}
+.tamano_soli{
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  
+}
+.bgsoli{
+  background-color: rgb(91, 174, 241);
+}
+.soli{
+  background-color: #6f43c0;
+  padding: 2%;
+  border-radius: 25px;
+  border: 2px solid #919191;
+}
+.raya{
+  margin-top: 2%;
+  border-bottom: 1px solid #919191;
+}
+.modo{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.estado{
+  background-color: rgb(231, 227, 0);
+  padding: 1.5%;
+  border-radius: 10px;
+}
+
+.caja{
+  display: flex;
+}
+
+.fondoZ{
+  background-image: linear-gradient(to top , rgb(39, 97, 212), rgb(255, 255, 255));
+}
+.celda{
+  
+  display: flex;
+  width: 90%;
+  margin: auto;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  padding: 1.5%;
+  border-radius: 25px;
+}
+.rayita{
+  border-right: solid 1px #000000;
+  padding-right: 2%;
+}
+.ampliacion{
+  width: 900px;
+}
+.fondofo{
+  background-color: rgb(60,108,203);
+}
