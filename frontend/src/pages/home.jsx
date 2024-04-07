@@ -1,12 +1,17 @@
-import Navbar from "../components/navbar/navbar"
+import Navbar from "../components/navbar/navbar";
+import Header from "../components/header/header";
+import Carrusel1 from "../components/carrusel1/carrusel1.";
+import Parte1 from "../components/parte1/parte1";
+import Footer1 from "../components/footer/footer";
 
 export default function Home() {
-    return (
-        <>
-            <Navbar />
-            <h2>HOLA SOY LA HOME PAGE</h2>
-            <h1>Jose angel q pasaaa</h1>
-            <h1>soy yo</h1>
-        </>
-    )
+  return (
+    <>
+      <Header />
+      <Navbar />
+      <Carrusel1/>
+      <Parte1/>
+      <Footer1/>
+    </>
+  );
 }

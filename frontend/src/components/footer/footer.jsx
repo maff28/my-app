@@ -1,15 +1,15 @@
-<<<<<<< HEAD
-<div id="hola"></div>
-=======
-import React from 'react'
-import { useIntl } from 'react-intl';
+import React from "react";
+import {} from "react-bootstrap";
 
-const Component = () => {
-    const { formatMessage } = useIntl();
-    return (
-        <div>Component</div>
-    );
-};
-
-export default Component;
->>>>>>> 43a3fef90a3145e160f985d8a7369c36d8521e89
+export default function Footer1() {
+  return (
+    <>
+      <footer class="p-1 text-center fondofo ">
+        <div class="container">
+          <p class="text-light">Tel: 3003398956 - Tel: 3023695487</p>
+          <p class="text-light">Derechos reservados: José Ricardo - maria salcedo</p>
+        </div>
+      </footer>
+    </>
+  );
+}

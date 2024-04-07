@@ -4,7 +4,7 @@ from config.db_config import get_db_connection
 from models.user_model import User
 from models.user_model import userdb
 from fastapi.encoders import jsonable_encoder
-import jwt
+
 
 SECRET_KEY="cleandeskpolicy123$"
 ALGORITHM="HS256"
