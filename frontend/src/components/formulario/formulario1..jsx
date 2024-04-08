@@ -6,9 +6,9 @@ import { sesion } from "../../sesion";
 export default function Formulario1() {
   const navigate = useNavigate();
   const handlelogin = () => {
-    var user_id = document.getElementById("user_usuario").value;
+    var user_usuario = document.getElementById("user_usuario").value;
     var user_contrasena = document.getElementById("user_contrasena").value;
-    sesion(user_id, user_contrasena, navigate);
+    sesion(user_usuario, user_contrasena, navigate);
   };
   return (
     <div class="bgl_login pt-4 pb-4">

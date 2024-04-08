@@ -9,7 +9,7 @@ export default function Footer1() {
           <p class="text-light pt-3">
             Tel: 3003398956 - Tel: 3023695487 
           </p>
-          <p class="text-light">Derechos reservados: José Ricardo - maria salcedo</p>
+          <p class="text-light">Derechos reservados: José Ricardo - maria salcedo - juanjo</p>
       </div>
 </footer>
     </>

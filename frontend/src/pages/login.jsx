@@ -9,7 +9,7 @@ export default function Login() {
   return (
     <>
       <Header />
-      <Navbar />
+      <Navbar/>
       <Formulario1/>
       <Footer1 />
     </>

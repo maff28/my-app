@@ -27,22 +27,20 @@ export async function Update_user(user_id,data) {
   }
 }
 
-export async function i_sesion(user_usuario,user_contrasena) {
+export async function i_sesion(usuario,contrasena) {
   try {
-    
-    console.log("1");
+    console.log(usuario,contrasena);
     const response = await axios({
       method: "POST",
       url: `${url}/loginuser`,
       data: {
-        user_usuario: user_usuario,
-        user_contrasena: user_contrasena
+        usuario: usuario,
+        contrasena: contrasena
       },
-      
     }); 
-    const data = response.data.access_token;
+    const dato = response.data.access_token;
     
-    return data;
+    return dato;
   } catch (error) {
     if (error.response && error.response.status === 404){
       throw new Error(error.response.data.detail);

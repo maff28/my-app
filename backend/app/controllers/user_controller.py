@@ -35,7 +35,7 @@ class UserController:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("SELECT usuario,contrasena FROM usuario WHERE usuario=%s and contrasena=%s", (loginvar.usuario,loginvar.contrasena))
+            cursor.execute("SELECT usuario, contrasena FROM usuario WHERE usuario=%s and contrasena=%s",(loginvar.usuario,loginvar.contrasena))
             result = cursor.fetchone()
             if result:
                 # Definir el tiempo de expiración del token
@@ -43,8 +43,8 @@ class UserController:
                 expires_in = datetime.timedelta(hours=1)
                 expiration = datetime.datetime.utcnow() + expires_in
                 content={
-                    'usuario':result[0],
-                    'contrasena':result[1],
+                    'usrio':str(result[0]),
+                    'contrasenaua':str(result[1]),
                     'exp': expiration
                 }
 

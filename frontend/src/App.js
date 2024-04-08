@@ -5,6 +5,7 @@ import Login from './pages/login';
 import NoPage from './pages/NoPage';
 import Estudiante from './pages/estudiante/home_estudiante';
 import { Prueba } from './pages/prueba';
+import { ProtectedRoute} from './components/protectedRoute.';
 
 
 
@@ -16,7 +17,7 @@ export default function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/home' element={<Home/>} />
           <Route path='/login' element={<Login/>} />
-          <Route path='/estudiante' element={<Estudiante/>} />
+          <Route path='/estudiante' element={<ProtectedRoute><Estudiante /></ProtectedRoute>} />
           <Route path='/prueba' element={<Prueba/>} />
           <Route path='*' element={<NoPage/>} />
         </Routes>

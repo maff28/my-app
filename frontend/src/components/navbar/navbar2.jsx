@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Navbar, Nav, NavDropdown, Container, Image} from 'react-bootstrap'
+import{cerrar_sesion} from '../../sesion';
 
 export default function Navbar2() {
   return (
@@ -15,7 +16,7 @@ export default function Navbar2() {
             <Nav.Link href="/home">Crear solicitud</Nav.Link>
             <Nav.Link href="#Sobre_nosotros">Ver estado de solicitud</Nav.Link>
             <Nav.Link href="#Servicios">Historial de solicitudes</Nav.Link>
-            <Nav.Link href="#Equipo">Salir</Nav.Link>
+            <Nav.Link onClick={cerrar_sesion}>Salir</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
