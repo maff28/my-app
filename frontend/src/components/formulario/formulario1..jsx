@@ -12,13 +12,13 @@ export default function Formulario1() {
   };
   return (
     <div class="bgl_login pt-4 pb-4">
-      <div class="fondo conlogin ">
-        <div class="row ">
+      <div class="fondo conlogin shadow  ">
+        <div class="">
           <div class="fs-1 tituloformulogin fw-bold mt-5 text-light">
             <p>Inicio de sesion</p>
           </div>
-          <form class=" mt-4 ms-5">
-            <div class=" mt-4 tamano_imput ">
+          <form class="posicion_imput2 ">
+            <div class="  tamano_imput posicion_imput1 ">
               <label class="form-label text-light">Usuario</label>
               <input
                 class="form-control  bg-light"

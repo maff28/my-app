@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Navbar, Nav, NavDropdown, Container, Image} from 'react-bootstrap'
+import {Navbar, Nav, Container, Image} from 'react-bootstrap'
 
 export default function navbar() {
   return (
@@ -11,7 +11,7 @@ export default function navbar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
           </Nav>
-          <Nav>
+          <Nav className="h4">
             <Nav.Link href="/home">Inicio</Nav.Link>
             <Nav.Link href="#Sobre_nosotros">Sobre nosotros</Nav.Link>
             <Nav.Link href="#Servicios">Servicios</Nav.Link>

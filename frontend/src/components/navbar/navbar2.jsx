@@ -9,7 +9,7 @@ export default function Navbar2() {
       <Container>
       <Image src="../picture/IUB.PNG" className="d-block" fluid/>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Collapse id="responsive-navbar-nav " class="h4">
           <Nav className="me-auto">
           </Nav>
           <Nav>
