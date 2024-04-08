@@ -1,29 +1,32 @@
-import { useEffect, useState } from "react"
-import * as API from '../ruta'
-
+import { useEffect, useState } from "react";
+import * as API from "../ruta";
+import Formulario1 from "../components/formulario/formulario1.";
 
 export function Prueba() {
-    API.get_users()
+  API.get_users();
 
-    const [lista, setUsers] = useState([]);
-    useEffect(() => {
-        API.get_users().then(setUsers);
-    }, [])
+  const [lista, setUsers] = useState([]);
+  useEffect(() => {
+    API.get_users().then(setUsers);
+  }, []);
 
   return (
     <>
-        <h1>hola</h1>
-        <ul>
-            {lista.map(user=>
-            <li key={user.id}>Area:{user.usuario} nombre: {user.contrasena}</li>)}                
-        </ul>
-        {lista.map(Usuarios=>
+    <Formulario1/>
+      
+      {/* <ul>
+        {lista.map((user) => (
+          <li key={user.id}>
+            Area:{user.usuario} nombre: {user.contrasena}
+          </li>
+        ))}
+      </ul> */}
+      {lista.map((Usuarios) => (
         <div key={Usuarios.id}>
-            <h1 >Usuario: {Usuarios.usuario}</h1> 
-            <p> contraseña: {Usuarios.contrasena}</p>
+          <h1>nombre: {Usuarios.nombre}</h1>
+          
         </div>
-        )}
-
+      ))}
     </>
   );
 }
