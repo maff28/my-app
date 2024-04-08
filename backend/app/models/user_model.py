@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class User(BaseModel):
     id:int
     IdArea: int
@@ -10,6 +11,7 @@ class User(BaseModel):
     documento: str
     teléfono: str
     
+#  modelo para el login 
 class userdb(BaseModel):
     usuario: str
     contrasena:str

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const url = "http://127.0.0.1:8000";
 
@@ -27,19 +27,27 @@ export async function Update_user(user_id,data) {
   }
 }
 
-export async function formulario() {
-  console.log("hola");
+export async function i_sesion(user_usuario,user_contrasena) {
   try {
-    let user_id =document.getElementById("user_id").value
-    let user_nombre= document.getElementById("user_nombre").value
-    const data={}
-    data+={"id": user_id, "nombre": user_nombre}
-    const r = await Update_user(user_id,data);
-    console.log(data)
-    alert("so, funciona")
     
+    console.log("1");
+    const response = await axios({
+      method: "POST",
+      url: `${url}/loginuser`,
+      data: {
+        user_usuario: user_usuario,
+        user_contrasena: user_contrasena
+      },
+      
+    }); 
+    const data = response.data.access_token;
     
+    return data;
   } catch (error) {
-    console.error(error);
+    if (error.response && error.response.status === 404){
+      throw new Error(error.response.data.detail);
+    } else { 
+      throw new Error("error al iniciar sesion");
+    }
   }
 }

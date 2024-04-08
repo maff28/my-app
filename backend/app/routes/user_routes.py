@@ -6,7 +6,8 @@ router = APIRouter()
 
 nuevo_usuario = UserController()
 
-@router.post("/loginuser/")
+""" ruta para ingresar por el login con jwt """
+@router.post("/loginuser")
 async def loginuser(loginvar: userdb):
     rpta = nuevo_usuario.loginuser(loginvar)
     return rpta

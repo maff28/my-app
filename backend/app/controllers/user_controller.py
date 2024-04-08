@@ -4,10 +4,14 @@ from config.db_config import get_db_connection
 from models.user_model import User
 from models.user_model import userdb
 from fastapi.encoders import jsonable_encoder
+import time
+import datetime
+import jwt
+
 
 SECRET_KEY="cleandeskpolicy123$"
 ALGORITHM="HS256"
-ACCES_TOKEN_EXPIRE_MIN="400"
+ACCES_TOKEN_EXPIRE_MIN="800"
 class UserController:    
             
     def create_user(self, user: User):   
@@ -25,29 +29,53 @@ class UserController:
             conn.rollback()
         finally:
             conn.close()
+
+
     def loginuser(self,loginvar:userdb):
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("SELECT id,IdArea,usuario,contrasena FROM usuario WHERE usuario=%s and contrasena=%s", (loginvar.usuario,loginvar.contrasena))
+            cursor.execute("SELECT usuario,contrasena FROM usuario WHERE usuario=%s and contrasena=%s", (loginvar.usuario,loginvar.contrasena))
             result = cursor.fetchone()
             if result:
+                # Definir el tiempo de expiración del token
+                # Por ejemplo, 3600 segundos (1 hora)
+                expires_in = datetime.timedelta(hours=1)
+                expiration = datetime.datetime.utcnow() + expires_in
                 content={
-                    'id':result[0],
-                    'IdArea':result[1],
-                    'usuario':result[2],
-                    'contrasena':result[3]
+                    'usuario':result[0],
+                    'contrasena':result[1],
+                    'exp': expiration
                 }
+
                 encoded = jwt.encode(content,SECRET_KEY,algorithm="HS256")
-                
-                return HTTPException(status_code=200,detail=f"{encoded}")
+                return {"access_token": encoded}
             else:
-                return HTTPException(status_code=400,detail="email o contraseña incorrecto")
+                raise HTTPException(status_code=404, detail="usuario o contraseña son incorrectos")
         except mysql.connector.Error as err:
             conn.rollback()
         finally:
             cursor.close()
             conn.close()
+
+          
+    def verify_token(self, token: str):
+        try:
+            # Decodificar el token usando la clave secreta y el algoritmo
+            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+            
+            # Verificar si el token ha expirado
+            exp = payload.get('exp', None)
+            if exp is None or exp < time.time():
+                raise jwt.ExpiredSignatureError("Token expirado")
+            
+            # Si todo está bien, devolver el payload del token
+            return "Token valido"
+        except jwt.PyJWTError as e:
+            # Si hay un error al decodificar o verificar el token, lanzar una excepción HTTP
+            raise HTTPException(status_code=401, detail="Token invalido")
+
+
 
     def delete_user(self, user_id: int):
         try:
