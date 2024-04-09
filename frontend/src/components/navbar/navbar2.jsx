@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Navbar, Nav, NavDropdown, Container, Image} from 'react-bootstrap'
+import {Navbar, Nav, Container, Image} from 'react-bootstrap'
 import{cerrar_sesion} from '../../sesion';
 
 export default function Navbar2() {
@@ -13,8 +13,8 @@ export default function Navbar2() {
           <Nav className="me-auto">
           </Nav>
           <Nav>
-            <Nav.Link href="/home">Crear solicitud</Nav.Link>
-            <Nav.Link href="#Sobre_nosotros">Ver estado de solicitud</Nav.Link>
+            <Nav.Link href="/estudianteCreaSoli">Crear solicitud</Nav.Link>
+            <Nav.Link href="/estudianteVeEstadoSolicitud">Ver estado de solicitud</Nav.Link>
             <Nav.Link href="#Servicios">Historial de solicitudes</Nav.Link>
             <Nav.Link onClick={cerrar_sesion}>Salir</Nav.Link>
           </Nav>

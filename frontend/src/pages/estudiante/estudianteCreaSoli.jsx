@@ -1,15 +1,15 @@
 import Navbar2 from "../../components/navbar/navbar2";
 import Header from "../../components/header/header";
-import Carrusel2 from "../../components/carrusel1/carrusel2";
 import Footer1 from "../../components/footer/footer";
+import Formulario2 from "../../components/formulario/formulario2";
 
-export default function Estudiante() {
+export default function EstudianteVeEstadiSolicitud() {
   return (
-    <>
+    <div class="fondoZ">
       <Header />
       <Navbar2 />
-      <Carrusel2/>
+      <Formulario2/>
       <Footer1/>
-    </>
+    </div>
   );
 }

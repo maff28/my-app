@@ -12,7 +12,6 @@ export function Prueba() {
 
   return (
     <>
-    <Formulario1/>
       
       {/* <ul>
         {lista.map((user) => (
