@@ -12,6 +12,7 @@ async def loginuser(loginvar: userdb):
     rpta = nuevo_usuario.loginuser(loginvar)
     return rpta
 
+""" ruta para crear un nuevo usuario """
 @router.post("/create_user/")
 async def create_user(user: User):
     rpta = nuevo_usuario.create_user(user)
