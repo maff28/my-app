@@ -2,6 +2,7 @@ import React from "react";
 import {} from "react-bootstrap";
 import * as API from "../../ruta";
 import { useEffect, useState } from "react";
+import DataTable from "react-data-table-component"
 
 export default function Table1() {
   API.get_users();
@@ -167,4 +168,44 @@ export default function Table1() {
       </div>
     </>
   );
+}
+
+export function Table2() {
+
+  const columns = [
+    {
+      name: 'nombre',
+      selector: row => row.nombre,
+      sortable: true
+    },
+    {
+      name: 'apellido',
+      selector: row => row.apelllido,
+      sortable: true
+    },
+    {
+      name: 'edad',
+      selector: row => row.edad,
+      sortable: true
+    },
+  ];
+
+  const data = [
+    {
+      nombre: 'jose',
+      apelllido: 'perez',
+      edad: '20'
+    }
+  ];
+
+  return(
+    <div>
+      <DataTable
+      title="Users"
+        columns={columns}
+        data={data}
+        
+      />
+    </div>
+  )
 }

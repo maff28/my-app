@@ -11,6 +11,7 @@ import EstudianteVeEstadiSolicitud from './pages/estudiante/estudianteVeEstadoSo
 
 
 
+
 export default function App() {
   return (
     <div>

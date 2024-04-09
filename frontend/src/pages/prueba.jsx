@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as API from "../ruta";
 import Formulario1 from "../components/formulario/formulario1.";
+import Table2 from "../components/table/table2";
 
 export function Prueba() {
   API.get_users();
@@ -12,7 +13,7 @@ export function Prueba() {
 
   return (
     <>
-      
+      <Table2/>
       {/* <ul>
         {lista.map((user) => (
           <li key={user.id}>

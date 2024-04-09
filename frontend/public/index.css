@@ -268,3 +268,8 @@ hr {
 .fondofo{
   background-color: rgb(60,108,203);
 }
+.AlinearCentro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+../backend/app/myvenv
+
 # production
 /build
 
