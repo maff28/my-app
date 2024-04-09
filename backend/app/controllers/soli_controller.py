@@ -25,8 +25,6 @@ class solicitudController:
                     'Respuesta':result[7],
                     'FechaCreacion':result[8],
                     'FechaUltimaModificacion':result[9]
-                    
-                    
             }
             payload.append(content)
             
