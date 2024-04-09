@@ -4,10 +4,11 @@ class Solicitud(BaseModel):
     idSolicitud:int
     idUsuario:int
     IdTipoSolicitud:int
-    PersonaAsignada:str
+    PersonaAsignada:int
     Archivos:str
     Asunto:str
     nota:str
-    Respuesta:str
     FechaCreacion:str
     FechaUltimaModificacion:str
+    estado:str
+    prioridad:str
