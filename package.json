@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "jwt-decode": "^4.0.0",
+    "mui-datatables": "^4.3.0",
     "react-data-table-component": "^7.6.2"
   }
 }

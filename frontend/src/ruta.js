@@ -6,6 +6,7 @@ export async function get_users() {
   try {
     const users = await axios.get(`${url}/get_users`);
     const data = await users.data.resultado;
+    const dato = await users
     console.log(data);
     console.log("toy dentro");
     return data;
@@ -13,6 +14,8 @@ export async function get_users() {
     console.error(error);
   }
 }
+
+
 
 
 export async function Update_user(user_id,data) {
