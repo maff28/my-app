@@ -3,6 +3,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 cd myvenv 
 cd .\Scripts\
 .\activate
+myvenv\Scripts\activate
 
 uvicorn main:app --reload
 
@@ -20,14 +21,14 @@ Get-ExecutionPolicy
 
 python -m venv myvenv
 cd myvenv
-cd .\Scripts
-.\activate
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
-.\activate
-pip install fastapi
+ cd .\Scripts
+  .\activate
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+  .\activate
+   pip install fastapi
 python.exe -m pip install --upgrade pip
 pip install mysql-connector-python
 pip install uvicorn
 uvicorn main:app --reload
 
-
+pip install PyJWT

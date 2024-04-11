@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-03-2024 a las 06:51:58
+-- Tiempo de generación: 11-04-2024 a las 05:37:20
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -116,7 +116,8 @@ CREATE TABLE `rol` (
 INSERT INTO `rol` (`IdRol`, `NombreRol`, `DescripcionRol`) VALUES
 (1, 'administrador', 'administrador del software'),
 (2, 'solicitante', 'usuario limitado exclusivamente a la creación de solicitudes y seguimiento del estado de las que el mismo ha creado'),
-(3, 'asignado', 'persona a cargo de darle una resolución a las solicitudes ');
+(3, 'líder', 'persona a cargo de asignar las solicitudes'),
+(4, 'consejero', 'persona a cargo de darle resolución a las solicitudes');
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,8 @@ INSERT INTO `rolxusuario` (`Id`, `IdXUsuario`, `IdRol`, `ValorRolXUsuario`, `Des
 (2, 2, 2, 'Estudiante técnico ', 'el estudiante con nombre amartinez con el Id(2) capaz de general solicitudes '),
 (3, 3, 3, 'Lider de area', 'lider de areaa de ingenieria telematica, puede resolver solicitudes y asignarlas '),
 (4, 5, 1, 'desarrolladora del software', 'se encarga de desarrollar lo relacionado a la vista del programa'),
-(5, 4, 2, 'estudiante tecnólogo', 'estudiante tecnológico');
+(5, 4, 2, 'estudiante tecnólogo', 'estudiante tecnológico'),
+(6, 7, 4, 'consejero de ingenieria telematica', 'consejero del area de ingenieria telematica');
 
 -- --------------------------------------------------------
 
@@ -158,18 +160,22 @@ CREATE TABLE `solicitud` (
   `Asunto` text NOT NULL,
   `nota` text NOT NULL,
   `FechaCreacion` varchar(20) NOT NULL,
-  `FechaUltimaModificacion` varchar(20) NOT NULL
+  `FechaUltimaModificacion` varchar(20) NOT NULL,
+  `estado` text NOT NULL,
+  `prioridad` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `solicitud`
 --
 
-INSERT INTO `solicitud` (`idSolicitud`, `idUsuario`, `IdTipoSolicitud`, `idpersonaAsignada`, `Archivos`, `Asunto`, `nota`, `FechaCreacion`, `FechaUltimaModificacion`) VALUES
-(1, 1, 1, 0, '', 'solicito creditos unicos para programacion I', '', '', ''),
-(2, 4, 5, 0, '', 'no me gusta la profe lourdes prefiero a bryan ', '', '', ''),
-(3, 2, 3, 0, '', 'No me deja matricular :( aparecen créditos en 0', '', '', ''),
-(4, 4, 6, 0, '', 'Me quedo grande programación, quiero pasarme a diseño grafico ', '', '', '');
+INSERT INTO `solicitud` (`idSolicitud`, `idUsuario`, `IdTipoSolicitud`, `idpersonaAsignada`, `Archivos`, `Asunto`, `nota`, `FechaCreacion`, `FechaUltimaModificacion`, `estado`, `prioridad`) VALUES
+(1, 1, 1, 7, '', 'solicito creditos unicos para programacion I', '', '', '', 'finalizada', ''),
+(2, 4, 5, 0, '', 'no me gusta la profe lourdes prefiero a bryan ', '', '', '', 'sin asignar', ''),
+(3, 2, 3, 0, '', 'No me deja matricular :( aparecen créditos en 0', '', '', '', 'sin asignar', ''),
+(4, 4, 6, 0, '', 'Me quedo grande programación, quiero pasarme a diseño grafico ', '', '', '', 'finalizada', ''),
+(5, 6, 5, 6, '', 'necesito cambiar a un grupo que sea los martes del modulo de catedra de la paz quedo atenta a cualquier observación ', '', '', '', 'pendiente', ''),
+(9, 1, 4, 0, '', 'Necesito retirar programacion I porque me quedo grande señores:(', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -221,7 +227,9 @@ INSERT INTO `usuario` (`id`, `IdArea`, `usuario`, `contrasena`, `nombre`, `apell
 (2, 1, 'amartinez', '54321', 'Ana Maria', 'Martinez Villa', '1021456789', '3205106678'),
 (3, 1, 'Bsuarezpeña', '123456', 'benito suarez', 'peña nieto', '1000258741', '018003000444'),
 (4, 4, 'jmiguelramirez', '123456', 'José miguel ', 'Ramirez prado', '10001542584', '3012525634'),
-(5, 2, 'mfernandezsalcedo', '123456', 'maria fernanda', 'salcedo de la rosa', '1003345658', '3022167894');
+(5, 2, 'mfernandezsalcedo', '123456', 'maria fernanda', 'salcedo de la rosa', '1003345658', '3022167894'),
+(6, 1, 'iflorez', '098765', 'isabella', 'florez fulleda', '1021433687', '3014901080'),
+(7, 1, 'spaez', '129012', 'Samuel David', 'Paez Cogollo', '72405087', '323570890');
 
 --
 -- Índices para tablas volcadas
@@ -316,7 +324,7 @@ ALTER TABLE `respuesta`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -353,3 +361,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
