@@ -5,27 +5,27 @@ from models.rolxusuario_model import rolxusuario
 from fastapi.encoders import jsonable_encoder
 
 class rolxusuariocontroller:
-    def get_rolxusuario(self, rolxusuario_id: int):
+    def get_rolxusuario(self, rolxusuario_id: rolxusuario):
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM rolxusuario WHERE IdRol = %s", (rolxusuario_id,))
-            result = cursor.fetchone()
+            cursor.execute("SELECT * FROM rolxusuario WHERE IdXUsuario = %s", (rolxusuario_id.IdXUsuario))
+            result = cursor.fetchall()
             payload = []
             content = {} 
-            
-            content={
+            for result in result:
+                 content={
                     'Id':int(result[0]),
                     'IdXUsuario':int(result[1]),
                     'IdRol':int(result[2]),
                     'ValorRolXUsuario':result[3],
                     'DescripcionRolXUsuario':result[4]
-            }
-            payload.append(content)
-            
-            json_data = jsonable_encoder(content)            
+                }
+                 payload.append(content)
+                 content = {}
+            json_data = jsonable_encoder(payload)             
             if result:
-               return  json_data
+               return  {"resultado": json_data}
             else:
                 raise HTTPException(status_code=404, detail="User not found")  
                 

@@ -13,6 +13,7 @@ class User(BaseModel):
     
 #  modelo para el login 
 class userdb(BaseModel):
+   
     usuario: str
     contrasena:str
 

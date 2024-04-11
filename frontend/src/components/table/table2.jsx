@@ -6,9 +6,10 @@ import MUIDataTable from "mui-datatables";
 const url = "http://127.0.0.1:8000";
 
 function Table2() {
-    
+
   const [users, setUsers] = useState([]);
 
+  //tomo informacion de la base de datos y la almaceno en el arreglo 'users'
   const get_userss = async () => {
     try {
       const users = await axios.get(`${url}/get_users`);

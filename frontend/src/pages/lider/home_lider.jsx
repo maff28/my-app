@@ -1,13 +1,14 @@
-import Navbar2 from "../../components/navbar/navbar2";
+
 import Header from "../../components/header/header";
 import Carrusel2 from "../../components/carrusel1/carrusel2";
 import Footer1 from "../../components/footer/footer";
+import Navbar4 from "../../components/navbar/navbar4";
 
-export default function Estudiante() {
+export default function Lider() {
   return (
     <>
       <Header />
-      <Navbar2 />
+      <Navbar4 />
       <Carrusel2/>
       <Footer1/>
     </>

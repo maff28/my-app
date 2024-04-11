@@ -8,6 +8,7 @@ import { Prueba } from './pages/prueba';
 import { ProtectedRoute} from './components/protectedRoute.';
 import EstudianteCreaSoli from './pages/estudiante/estudianteCreaSoli';
 import EstudianteVeEstadiSolicitud from './pages/estudiante/estudianteVeEstadoSolicitud';
+import Lider from './pages/lider/home_lider.jsx';
 
 
 
@@ -23,6 +24,7 @@ export default function App() {
           <Route path='/estudiante' element={<ProtectedRoute><Estudiante /></ProtectedRoute>} />
           <Route path='/estudianteCreaSoli' element={<ProtectedRoute><EstudianteCreaSoli /></ProtectedRoute>} />
           <Route path='/estudianteVeEstadoSolicitud' element={<ProtectedRoute><EstudianteVeEstadiSolicitud /></ProtectedRoute>} />
+          <Route path='/Lider' element={<ProtectedRoute><Lider /></ProtectedRoute>} />
           <Route path='/prueba' element={<Prueba/>} />
           <Route path='*' element={<NoPage/>} />
         </Routes>
