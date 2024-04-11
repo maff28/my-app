@@ -35,7 +35,7 @@ class UserController:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("SELECT usuario, contrasena FROM usuario WHERE usuario=%s and contrasena=%s",(loginvar.usuario,loginvar.contrasena))
+            cursor.execute("SELECT usuario, contrasena, id FROM usuario WHERE usuario=%s and contrasena=%s",(loginvar.usuario,loginvar.contrasena))
             result = cursor.fetchone()
             if result:
                 # Definir el tiempo de expiración del token
@@ -43,13 +43,13 @@ class UserController:
                 expires_in = datetime.timedelta(hours=1)
                 expiration = datetime.datetime.utcnow() + expires_in
                 content={
-                    'usrio':str(result[0]),
-                    'contrasenaua':str(result[1]),
+                    'usuario':str(result[0]),
+                    'contrasena':str(result[1]),
+                    'id':int(result[2]),
                     'exp': expiration
                 }
-
                 encoded = jwt.encode(content,SECRET_KEY,algorithm="HS256")
-                return {"access_token": encoded}
+                return {"access_token": encoded, "usuario":content}
             else:
                 raise HTTPException(status_code=404, detail="usuario o contraseña son incorrectos")
         except mysql.connector.Error as err:

@@ -13,9 +13,12 @@ export default function Navbar4() {
           <Nav className="me-auto">
           </Nav>
           <Nav>
-            <Nav.Link href="/estudianteCreaSoli">Crear solicitud</Nav.Link>
-            <Nav.Link href="/estudianteVeEstadoSolicitud">Ver estado de solicitud</Nav.Link>
-            <Nav.Link href="#Servicios">Historial de solicitudes</Nav.Link>
+            <Nav.Link href="/estudianteCreaSoli">solicitudes sin asignar</Nav.Link>
+            <Nav.Link href="/estudianteVeEstadoSolicitud">solicitudes pendientes</Nav.Link>
+            <Nav.Link href="#Servicios">solicitudes finalizadas</Nav.Link>
+            <Nav.Link href="#Servicios">asignar solicitudes </Nav.Link>
+            <Nav.Link href="#Servicios">mis solicitudes</Nav.Link>
+            <Nav.Link href="#Servicios">mi historial</Nav.Link>
             <Nav.Link onClick={cerrar_sesion}>Salir</Nav.Link>
           </Nav>
         </Navbar.Collapse>
