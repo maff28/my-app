@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+
 import {Navbar, Nav, Container, Image} from 'react-bootstrap'
 import{cerrar_sesion} from '../../sesion';
 

@@ -271,9 +271,9 @@ class solicitudController:
                     'prioridad': result[10]
                 }
                 payload.append(content)
-            
+                content = {}
             json_data = jsonable_encoder(payload)            
-            return json_data
+            return {"resultado": json_data}
                     
         except mysql.connector.Error as err:
             conn.rollback()

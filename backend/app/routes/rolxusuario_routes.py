@@ -11,7 +11,7 @@ async def get_rolesxusuario():
     rpta = nuevo_rolxusuario.get_rolesxusuario()
     return rpta
 
-@router.get("/get_rolxusuario/")
-async def get_rolxusuario(rolxusuario_id: rolxusuario):
+@router.get("/get_rolxusuario/{rolxusuario_id}")
+async def get_rolxusuario(rolxusuario_id: int):
     rpta = nuevo_rolxusuario.get_rolxusuario(rolxusuario_id)
     return rpta

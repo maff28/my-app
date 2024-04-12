@@ -6,13 +6,13 @@ export async function sesion(user_usuario, user_contrasena, navigate) {
   try {
     const token = await API.i_sesion(user_usuario, user_contrasena);
     localStorage.setItem("token", token);
-    var idusuario= localStorage.getItem("usuario");
+    var idusuario = parseInt(localStorage.getItem("usuario"));
     console.log(idusuario);
-    /* var Rol= API.RolUsuario(idusuario);
+    var Rol= await API.RolUsuario(idusuario);
     
     console.log(Rol);
     switch (Rol){
-      case 1:
+      case 1: 
         navigate("/admin");
         break;
       case 2:
@@ -22,13 +22,12 @@ export async function sesion(user_usuario, user_contrasena, navigate) {
         navigate("/lider");
         break;
       case 4:
-         navigate("/lider");
-      break;
+        navigate("/lider");
+        break;
       default:
         navigate("/NoPage");
         break;
-    } */
-    navigate("/estudiante");  
+    } 
   } catch (error) {
     alert(error.message);
   }

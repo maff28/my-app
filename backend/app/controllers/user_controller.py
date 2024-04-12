@@ -113,7 +113,7 @@ class UserController:
             
             json_data = jsonable_encoder(content)            
             if result:
-               return  json_data
+                return  json_data
             else:
                 raise HTTPException(status_code=404, detail="User not found")  
                 

@@ -2,17 +2,26 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MUIDataTable from "mui-datatables";
+import React from "react";
+import { ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
 
 const url = "http://127.0.0.1:8000";
+const muiCache = createCache({
+  key: "mui-datatables",
+  prepend: true
+});
 
 function Table2() {
 
   const [users, setUsers] = useState([]);
 
   //tomo informacion de la base de datos y la almaceno en el arreglo 'users'
-  const get_userss = async () => {
+  const get_SolicitudesSinAsignarr = async () => {
     try {
-      const users = await axios.get(`${url}/get_users`);
+      const users = await axios.get(`${url}/get_SolicitudesSinAsignar/`);
       const dato = await users.data.resultado;
       console.log(dato);
       console.log("toy dentro");
@@ -23,51 +32,45 @@ function Table2() {
   };
 
   useEffect(() => {
-    get_userss();
+    get_SolicitudesSinAsignarr();
   }, []);
 
-
+  
 
   const columns = [
     {
-      name: "nombre",
-      label: "Nombre",
+      name: "idSolicitud",
+      label: "ID solicitud",
       
     },
     {
-      name: "apellido",
-      label: "Apellido",
+      name: "idUsuario",
+      label: "Estudiante",
     },
     {
-      name: "id",
-      label:"ID"
+      name: "IdTipoSolicitud",
+      label:"Tpo solicitud"
     },
   ];
 
-
-
   const options = {
-    filterType: "checkbox",
+    filterType: "dropdown",
+    
+    
+    
   };
 
-
-
   return (
-    <>
-      <div id="layoutSidenav_content">
-        <main>
-          <div class="container-fluid px-4 ">
-            <h1 class="mt-4">Tables</h1>
-            <MUIDataTable
-                  title={"hola"}
-                  columns={columns}
-                  data={users}
-                  options={options}
-                />
-          </div>
-        </main>
-      </div>
-    </>
+    <CacheProvider value={muiCache}>
+      <ThemeProvider theme={createTheme()}>
+        <MUIDataTable
+          title={"ACME Employee list"}
+          data={users}
+          columns={columns}
+          options={options}
+        />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 

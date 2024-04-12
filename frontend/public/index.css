@@ -18,7 +18,6 @@ html, body {
 
 body {
   font-family: Helvetical, Arial, sans-serif;
-  font-size: 22px;
   padding-top: 0;
 }
 
@@ -272,4 +271,10 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.fondo_tabla{
+  background: rgba(182, 184, 190, 0.234);
+}
+.bordillo{
+  border-bottom: rgb(60,108,203) 2px solid;
 }

@@ -1,8 +1,5 @@
-import React, { Component } from "react";
+
 import { Navbar, Nav, Container, Image } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
 
 export default function Navbar3() {
   return (
