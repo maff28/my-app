@@ -218,7 +218,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
             # Modify the query to filter by 'estado' column with the value 'pendiente'
-            cursor.execute("SELECT * FROM solicitud WHERE estado = %s", ('pendiente',))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA WHERE sol.estado like '%pendiente%' ")
             results = cursor.fetchall()
             payload = []
             
@@ -234,12 +234,14 @@ class solicitudController:
                     'FechaCreacion': result[7],
                     'FechaUltimaModificacion': result[8],
                     'estado': result[9],
-                    'prioridad': result[10]
+                    'prioridad': result[10],
+                    'nombre': result[11],
+                    'NombreAsignado': result[12]
                 }
                 payload.append(content)
             
             json_data = jsonable_encoder(payload)            
-            return json_data
+            return {"resultado": json_data}
                 
         except mysql.connector.Error as err:
             conn.rollback()
@@ -252,10 +254,10 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
             # Modify the query to filter by 'estado' column with the value 'sin asignar'
-            cursor.execute("SELECT * FROM solicitud WHERE estado = %s", ('sin asignar',))
+            cursor.execute(" SELECT sol.*, usua.nombre FROM solicitud sol join usuario usua on sol.idUsuario = usua.id WHERE sol.estado like '%sin asignar%' ")
             results = cursor.fetchall()
             payload = []
-        
+            print (results)
             for result in results:
                 content = {
                     'idSolicitud': int(result[0]),
@@ -268,7 +270,8 @@ class solicitudController:
                     'FechaCreacion': result[7],
                     'FechaUltimaModificacion': result[8],
                     'estado': result[9],
-                    'prioridad': result[10]
+                    'prioridad': result[10],
+                    'nombre': result[11]
                 }
                 payload.append(content)
                 content = {}

@@ -45,11 +45,11 @@ function Table3() {
       
     },
     {
-      name: "idUsuario",
+      name: "nombre",
       label: "Estudiante",
     },
     {
-      name: "IdTipoSolicitud",
+      name: "",
       label:"Tipo Solicitud",
     },
     {
@@ -57,12 +57,8 @@ function Table3() {
       label:"persona Asignada",
     },
     {
-      name: "Archivos",
-      label:"Archivo",
-    },
-    {
       name: "Asunto",
-      label:"Asunto",
+      label:"Asunto"
     },
     {
       name: "FechaCreacion",
@@ -85,7 +81,7 @@ function Table3() {
   const options = {
     filterType: "dropdown",
     responsive: "vertical",
-    tableBodyHeight: "400px",
+    tableBodyHeight: "500px",
     rowsPerPage: 5,
   };
   console.log()
@@ -98,7 +94,7 @@ function Table3() {
 
 
   return (
-    <div class="p-5 fondo_tabla"> 
+    <div > 
       <CacheProvider value={muiCache}>
       <ThemeProvider theme={createTheme()}>
         <MUIDataTable
@@ -109,7 +105,7 @@ function Table3() {
           components={components}
         />
       </ThemeProvider>
-    </CacheProvider>
+      </CacheProvider>
     </div>
     
     

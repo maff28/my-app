@@ -1,17 +1,32 @@
 
-import Header from "../../components/header/header";
+
 import Footer1 from "../../components/footer/footer";
-import Navbar4 from "../../components/navbar/navbar4";
+
 import Table3 from "../../components/table/tabla3";
+import NavbarPrueba from "../../components/navbar/navbarprueba";
+import Lateral1 from "../../components/navbar/lateral1";
 
 
 export default function Solicitudes_sin_asignar() {
   return (
-    <>
-      <Header />
-      <Navbar4 />
-      <Table3/>
+
+      
+
+      <>
+        <NavbarPrueba/>
+      <div class="todo">
+        
+        <div class=" p-0 lr">
+          <Lateral1/>
+        </div>
+        <div class=" ld ">
+          <Table3/>
+        </div>
+        
+      </div>
       <Footer1/>
-    </>
+      </>
+      
+    
   );
 }

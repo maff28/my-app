@@ -10,6 +10,7 @@ import EstudianteCreaSoli from './pages/estudiante/estudianteCreaSoli';
 import EstudianteVeEstadiSolicitud from './pages/estudiante/estudianteVeEstadoSolicitud';
 import Lider from './pages/lider/home_lider.jsx';
 import Solicitudes_sin_asignar from './pages/lider/solicitudes_sin_asignar.jsx';
+import Solicitudes_pendientes from './pages/lider/solicitudes_pendientes.jsx';
 
 
 
@@ -27,6 +28,7 @@ export default function App() {
           <Route path='/estudianteVeEstadoSolicitud' element={<ProtectedRoute><EstudianteVeEstadiSolicitud /></ProtectedRoute>} />
           <Route path='/Lider' element={<ProtectedRoute><Lider /></ProtectedRoute>} />
           <Route path='/Solicitudes_sin_asignar' element={<ProtectedRoute><Solicitudes_sin_asignar/></ProtectedRoute>} />
+          <Route path='/Solicitudes_Pendientes' element={<ProtectedRoute><Solicitudes_pendientes/></ProtectedRoute>} />
           <Route path='/prueba' element={<Prueba/>} />
           <Route path='*' element={<NoPage/>} />
         </Routes>

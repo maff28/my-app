@@ -267,6 +267,9 @@ hr {
 .fondofo{
   background-color: rgb(60,108,203);
 }
+.color{
+  color:rgb(255, 255, 255) ;
+}
 .AlinearCentro{
   display: flex;
   justify-content: center;
@@ -277,4 +280,18 @@ hr {
 }
 .bordillo{
   border-bottom: rgb(60,108,203) 2px solid;
+}
+.fijobajo{
+  height: 100%;
+  
+}
+.todo{
+  display: flex;
+}
+.lr{
+  width: 17.5%;
+}
+.ld{
+  width: 90%;
+  padding: 1%;
 }
