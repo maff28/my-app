@@ -11,17 +11,16 @@ export default function Solicitudes_pendientes() {
 
       <>
         <NavbarPrueba/>
-      <div class="todo">
+        <div class="todo">
+          <div class=" p-0">
+              <Lateral1/>
+          </div>
+          <div class=" ld ">
+            <Table4/>
+          </div>
         
-        <div class=" p-0 lr">
-          <Lateral1/>
         </div>
-        <div class=" ld ">
-          <Table4/>
-        </div>
-        
-      </div>
-      <Footer1/>
+        <Footer1/>
       </>
       
     

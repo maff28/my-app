@@ -4,8 +4,8 @@ export default function Lateral1() {
     return (
     <>
         <div id="layoutSidenav" class="fijobajo ">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion ps-2 text-light fondofo" id="sidenavAccordion">
+            <div id="">
+                <nav class="sb-sidenav  ps-2 text-light fondofo">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading ">Analicis</div>
@@ -27,7 +27,7 @@ export default function Lateral1() {
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link text-light" href="/Solicitudes_sin_asignar">Solicitudes sin asignar</a>
                                     <a class="nav-link text-light" href="/Solicitudes_pendientes">Solicitudes pendiente</a>
-                                    <a class="nav-link text-light" href="/Solicitudes_sin_asignar">Solicitudes finalizadas</a>
+                                    <a class="nav-link text-light" href="/Solicitudes_finalizadas">Solicitudes finalizadas</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed text-light" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">

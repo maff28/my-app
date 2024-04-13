@@ -150,7 +150,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
                 # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idUsuario' with the provided student ID
-            cursor.execute("SELECT * FROM solicitud WHERE estado = %s " , ('finalizada',))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado like '%finalizada%' ")
             results = cursor.fetchall()
             payload = []
                 
@@ -166,13 +166,15 @@ class solicitudController:
                     'FechaCreacion': result[7],
                     'FechaUltimaModificacion': result[8],
                     'estado': result[9],
-                    'prioridad': result[10]
+                    'prioridad': result[10],
+                    'nombre': result[11],
+                    'NombreAsignado': result[12],
+                    'valor': result[13]
                 }
                 payload.append(content)
                 
             json_data = jsonable_encoder(payload)            
-            return json_data
-                       
+            return {"resultado": json_data}
         except mysql.connector.Error as err:
             conn.rollback()
             print(f"Database error: {err}") # Log the error for debugging
@@ -206,7 +208,6 @@ class solicitudController:
                 
             json_data = jsonable_encoder(payload)            
             return json_data
-                       
         except mysql.connector.Error as err:
             conn.rollback()
             print(f"Database error: {err}") # Log the error for debugging
@@ -218,7 +219,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
             # Modify the query to filter by 'estado' column with the value 'pendiente'
-            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA WHERE sol.estado like '%pendiente%' ")
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado like '%pendiente%' ")
             results = cursor.fetchall()
             payload = []
             
@@ -236,7 +237,8 @@ class solicitudController:
                     'estado': result[9],
                     'prioridad': result[10],
                     'nombre': result[11],
-                    'NombreAsignado': result[12]
+                    'NombreAsignado': result[12],
+                    'valor': result[13]
                 }
                 payload.append(content)
             
@@ -254,7 +256,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
             # Modify the query to filter by 'estado' column with the value 'sin asignar'
-            cursor.execute(" SELECT sol.*, usua.nombre FROM solicitud sol join usuario usua on sol.idUsuario = usua.id WHERE sol.estado like '%sin asignar%' ")
+            cursor.execute(" SELECT sol.*, usua.nombre,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado like '%sin asignar%' ")
             results = cursor.fetchall()
             payload = []
             print (results)
@@ -271,7 +273,8 @@ class solicitudController:
                     'FechaUltimaModificacion': result[8],
                     'estado': result[9],
                     'prioridad': result[10],
-                    'nombre': result[11]
+                    'nombre': result[11],
+                    'valor': result[12]
                 }
                 payload.append(content)
                 content = {}

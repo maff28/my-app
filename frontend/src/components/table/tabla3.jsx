@@ -49,11 +49,11 @@ function Table3() {
       label: "Estudiante",
     },
     {
-      name: "",
+      name: "valor",
       label:"Tipo Solicitud",
     },
     {
-      name: "idpersonaAsignada",
+      name: "",
       label:"persona Asignada",
     },
     {
@@ -62,7 +62,7 @@ function Table3() {
     },
     {
       name: "FechaCreacion",
-      label:"fecha de creacion",
+      label:"Fecha de creacion",
     },
     {
       name: "FechaUltimaModificacion",

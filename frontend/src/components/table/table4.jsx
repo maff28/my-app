@@ -49,7 +49,7 @@ function Table4() {
       label: "Estudiante",
     },
     {
-      name: "IdTipoSolicitud",
+      name: "valor",
       label:"Tipo Solicitud",
     },
     {
