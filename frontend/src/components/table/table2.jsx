@@ -24,7 +24,7 @@ function Table2() {
       const users = await axios.get(`${url}/get_SolicitudesSinAsignar/`);
       const dato = await users.data.resultado;
       console.log(dato);
-      console.log("toy dentro");
+      console.log("adentro");
       setUsers(dato);
     } catch (error) {
       console.error(error);

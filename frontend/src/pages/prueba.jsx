@@ -16,7 +16,7 @@ export function Prueba() {
   }, []);
 
   return (
-      <div class="bg-secondary">
+      <div class="">
 
         <NavbarPrueba/>
         <div class="row">

@@ -12,6 +12,8 @@ import Lider from './pages/lider/home_lider.jsx';
 import Solicitudes_sin_asignar from './pages/lider/solicitudes_sin_asignar.jsx';
 import Solicitudes_pendientes from './pages/lider/solicitudes_pendientes.jsx';
 import Solicitudes_finalizadas from './pages/lider/solicitudes_finalizadas.jsx';
+import Asignado_a_ti from './pages/lider/asignado_a_ti.jsx';
+import Finalizados_por_ti from './pages/lider/finalizados_por_ti.jsx';
 
 
 
@@ -31,6 +33,8 @@ export default function App() {
           <Route path='/Solicitudes_sin_asignar' element={<ProtectedRoute><Solicitudes_sin_asignar/></ProtectedRoute>} />
           <Route path='/Solicitudes_Pendientes' element={<ProtectedRoute><Solicitudes_pendientes/></ProtectedRoute>} />
           <Route path='/Solicitudes_finalizadas' element={<ProtectedRoute><Solicitudes_finalizadas/></ProtectedRoute>} />
+          <Route path='/asignado_a_ti' element={<ProtectedRoute><Asignado_a_ti/></ProtectedRoute>} />
+          <Route path='/finalizados_por_ti' element={<ProtectedRoute><Finalizados_por_ti/></ProtectedRoute>} />
           <Route path='/prueba' element={<Prueba/>} />
           <Route path='*' element={<NoPage/>} />
         </Routes>

@@ -27,7 +27,7 @@ export async function get_users() {
     const users = await axios.get(`${url}/get_users`);
     const data = await users.data.resultado;
     console.log(data);
-    console.log("toy dentro");
+    console.log("toy get_users");
     return data;
   } catch (error) {
     console.error(error);
@@ -74,3 +74,4 @@ export async function i_sesion(usuario,contrasena) {
     }
   }
 }
+

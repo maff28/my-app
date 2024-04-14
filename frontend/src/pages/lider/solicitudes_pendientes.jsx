@@ -11,7 +11,7 @@ export default function Solicitudes_pendientes() {
 
       <>
         <NavbarPrueba/>
-        <div class="todo">
+        <div class="todo bg-warning">
           <div class=" p-0">
               <Lateral1/>
           </div>

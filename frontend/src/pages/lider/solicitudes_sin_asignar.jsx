@@ -14,7 +14,7 @@ export default function Solicitudes_sin_asignar() {
 
       <>
         <NavbarPrueba/>
-      <div class="todo">
+      <div class="todo bg-danger">
         
         <div class=" p-0 lr">
           <Lateral1/>

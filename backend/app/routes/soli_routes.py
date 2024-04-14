@@ -12,12 +12,12 @@ async def create_Solicitud(solicitud:Creasoli):
     rpta = nuevo_soli.create_Solicitud(solicitud)
     return rpta
 
-@router.get("/get_SolicitudesPendientesPorIdPersonaAsignada/{idpersonaAsignada}",response_model=list[Solicitud])
+@router.get("/get_SolicitudesPendientesPorIdPersonaAsignada/{idpersonaAsignada}")
 async def get_SolicitudesPendientesPorIdPersonaAsignada(idpersonaAsignada:int):
     rpta=nuevo_soli.get_SolicitudesPendientesPorIdPersonaAsignada(idpersonaAsignada)
     return rpta
 
-@router.get("/get_SolicitudesFinalizadasPorIdPersonaAsignada/{idpersonaAsignada}",response_model=list[Solicitud])
+@router.get("/get_SolicitudesFinalizadasPorIdPersonaAsignada/{idpersonaAsignada}")
 async def get_SolicitudesFinalizadasPorIdPersonaAsignada(idpersonaAsignada:int):
     rpta=nuevo_soli.get_SolicitudesFinalizadasPorIdPersonaAsignada(idpersonaAsignada)
     return rpta

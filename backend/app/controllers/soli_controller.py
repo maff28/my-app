@@ -46,7 +46,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
             # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idPersonaAsignada' with the provided ID
-            cursor.execute("SELECT * FROM solicitud WHERE estado = %s AND idpersonaAsignada = %s", ('pendiente',idpersonaAsignada))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado = %s AND asig.IdAsignado = %s ", ('pendiente',idpersonaAsignada))
             results = cursor.fetchall()
             payload = []
             
@@ -62,13 +62,15 @@ class solicitudController:
                     'FechaCreacion': result[7],
                     'FechaUltimaModificacion': result[8],
                     'estado': result[9],
-                    'prioridad': result[10]
+                    'prioridad': result[10],
+                    'nombre': result[11],
+                    'NombreAsignado': result[12],
+                    'valor': result[13]
                 }
                 payload.append(content)
-            
+                content = {}
             json_data = jsonable_encoder(payload)            
             return json_data
-                    
         except mysql.connector.Error as err:
             conn.rollback()
             print(f"Database error: {err}") # Log the error for debugging
@@ -80,7 +82,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
             # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idPersonaAsignada' with the provided ID
-            cursor.execute("SELECT * FROM solicitud WHERE estado = %s AND idpersonaAsignada = %s", ('finalizada',idpersonaAsignada))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado = %s AND asig.IdAsignado = %s ", ('finalizada',idpersonaAsignada))
             results = cursor.fetchall()
             payload = []
             
@@ -96,7 +98,10 @@ class solicitudController:
                     'FechaCreacion': result[7],
                     'FechaUltimaModificacion': result[8],
                     'estado': result[9],
-                    'prioridad': result[10]
+                    'prioridad': result[10],
+                    'nombre': result[11],
+                    'NombreAsignado': result[12],
+                    'valor': result[13]
                 }
                 payload.append(content)
             
@@ -132,13 +137,16 @@ class solicitudController:
                     'FechaCreacion': result[7],
                     'FechaUltimaModificacion': result[8],
                     'estado': result[9],
-                    'prioridad': result[10]
+                    'prioridad': result[10],
+                    'nombre': result[11],
+                    'NombreAsignado': result[12],
+                    'valor': result[13]
                 }
                 payload.append(content)
                 
             json_data = jsonable_encoder(payload)            
-            return json_data
-                       
+            return {"resultado": json_data}
+        
         except mysql.connector.Error as err:
             conn.rollback()
             print(f"Database error: {err}") # Log the error for debugging
@@ -150,7 +158,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
                 # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idUsuario' with the provided student ID
-            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado like '%finalizada   %' ")
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado like '%finalizada%' ")
             results = cursor.fetchall()
             payload = []
                 
