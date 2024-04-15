@@ -1,14 +1,13 @@
 from fastapi import APIRouter, HTTPException
 from controllers.soli_controller import *
-from models.soli_model import Solicitud
-from models.soli_model import Creasoli
+
 
 router = APIRouter()
 
 nuevo_soli = solicitudController()
 
 @router.post("/create_Solicitud/")
-async def create_Solicitud(solicitud:Creasoli):
+async def create_Solicitud(solicitud: Creasoli):
     rpta = nuevo_soli.create_Solicitud(solicitud)
     return rpta
 
@@ -22,7 +21,7 @@ async def get_SolicitudesFinalizadasPorIdPersonaAsignada(idpersonaAsignada:int):
     rpta=nuevo_soli.get_SolicitudesFinalizadasPorIdPersonaAsignada(idpersonaAsignada)
     return rpta
 
-@router.get("/get_SolicitudesPendientesPorIdUsuario/{idUsuario}",response_model=list[Solicitud])
+@router.get("/get_SolicitudesPendientesPorIdUsuario/{idUsuario}")
 async def get_SolicitudesPendientesPorIdUsuario(idUsuario:int):
     rpta =nuevo_soli.get_SolicitudesPendientesPorIdUsuario(idUsuario)
     return rpta
@@ -37,7 +36,7 @@ async def get_Solicitudes():
     rpta = nuevo_soli.get_Solicitudes()
     return rpta
 
-@router.get("/get_SolicitudesFinalizadasPorIdUsuario/{idUsuario}",response_model=list[Solicitud])
+@router.get("/get_SolicitudesFinalizadasPorIdUsuario/{idUsuario}")
 async def get_SolicitudesFinalizadasPorIdUsuario(idUsuario:int):
     rpta = nuevo_soli.get_SolicitudesFinalizadasPorIdUsuario(idUsuario)
     return rpta
@@ -52,7 +51,7 @@ async def get_SolicitudesPendientes():
     rpta = nuevo_soli.get_SolicitudesPendientes()
     return rpta
 
-@router.get("/get_Solicitud/{Solicitud_id}",response_model=Solicitud)
+@router.get("/get_Solicitud/{Solicitud_id}")
 async def get_Solicitud(Solicitud_id: int):
     rpta = nuevo_soli.get_Solicitud(Solicitud_id)
     return rpta

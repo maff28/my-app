@@ -75,3 +75,21 @@ export async function i_sesion(usuario,contrasena) {
   }
 }
 
+
+export async function Crea_Solicitud(idUsuario,IdTipoSolicitud,Asunto) {
+  try {
+    console.log(idUsuario,IdTipoSolicitud,Asunto);
+    axios({
+      method: "post",
+      url: `${url}/create_Solicitud`,
+      data: {
+        idUsuario: idUsuario,
+        IdTipoSolicitud: IdTipoSolicitud,
+        Asunto: Asunto
+      },
+      
+    });
+  } catch (error) {
+      return error;
+  }
+}

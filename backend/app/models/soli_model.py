@@ -17,4 +17,3 @@ class Creasoli(BaseModel):
     idUsuario : int
     IdTipoSolicitud : int
     Asunto : str
-    FechaCreacion : str

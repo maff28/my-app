@@ -14,6 +14,7 @@ import Solicitudes_pendientes from './pages/lider/solicitudes_pendientes.jsx';
 import Solicitudes_finalizadas from './pages/lider/solicitudes_finalizadas.jsx';
 import Asignado_a_ti from './pages/lider/asignado_a_ti.jsx';
 import Finalizados_por_ti from './pages/lider/finalizados_por_ti.jsx';
+import EstudianteVeHistorial from './pages/estudiante/estudianteVeHistorial.jsx';
 
 
 
@@ -29,6 +30,7 @@ export default function App() {
           <Route path='/estudiante' element={<ProtectedRoute><Estudiante /></ProtectedRoute>} />
           <Route path='/estudianteCreaSoli' element={<ProtectedRoute><EstudianteCreaSoli /></ProtectedRoute>} />
           <Route path='/estudianteVeEstadoSolicitud' element={<ProtectedRoute><EstudianteVeEstadiSolicitud /></ProtectedRoute>} />
+          <Route path='/estudianteVeHistorial' element={<ProtectedRoute><EstudianteVeHistorial/></ProtectedRoute>} />
           <Route path='/Lider' element={<ProtectedRoute><Lider /></ProtectedRoute>} />
           <Route path='/Solicitudes_sin_asignar' element={<ProtectedRoute><Solicitudes_sin_asignar/></ProtectedRoute>} />
           <Route path='/Solicitudes_Pendientes' element={<ProtectedRoute><Solicitudes_pendientes/></ProtectedRoute>} />

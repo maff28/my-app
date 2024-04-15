@@ -1,16 +1,20 @@
-import Navbar2 from "../../components/navbar/navbar2";
-import Header from "../../components/header/header";
+import NavbarPrueba2 from "../../components/navbar/navbarprueba2";
 import Footer1 from "../../components/footer/footer";
-import Table1 from "../../components/table/table1";
+import Lateral2 from "../../components/navbar/lateral2";
 import Table2 from "../../components/table/table2";
 
-export default function EstudianteCreaSoli() {
+export default function EstudianteVeEstadiSolicitud() {
   return (
-    <div class="fondoZ">
-      <Header />
-      <Navbar2 />
-      <Table1/>
-      <Table2/>
+    <div class="fondox">
+      <NavbarPrueba2/>
+      <div class="todo ">
+          <div class=" p-0">
+            <Lateral2/>
+          </div>
+          <div class=" ld ">
+            < Table2/>
+          </div>
+      </div>
       <Footer1/>
     </div>
   );

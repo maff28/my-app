@@ -293,3 +293,7 @@ hr {
   width: 100%;
   padding: 1%;
 }
+.fondox{
+  background: rgb(234,232,25);
+  background: linear-gradient(266deg, rgba(234,232,25,0.9332983193277311) 0%, rgba(237,36,26,1) 100%);
+}

@@ -1,7 +1,7 @@
 import mysql.connector
 from fastapi import HTTPException
 from config.db_config import get_db_connection
-from models.soli_model import Solicitud
+
 from models.soli_model import Creasoli
 from fastapi.encoders import jsonable_encoder
 import uuid
@@ -12,19 +12,15 @@ class solicitudController:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            idSolicitud = str(uuid.uuid4())
             # Prepare the SQL INSERT query with only essential fields
-            insert_query = """INSERT INTO solicitud (idSolicitud,idUsuario, IdTipoSolicitud, Asunto, FechaCreacion) 
-                            VALUES (%s,%s, %s, %s, %s)"""
             
-            # Execute the insert query using the cursor.execute() method
-            cursor.execute(insert_query, (idSolicitud,solicitud.idUsuario, solicitud.IdTipoSolicitud, solicitud.Asunto, solicitud.FechaCreacion))
-            
+
+            cursor.execute("INSERT INTO solicitud (idUsuario, IdTipoSolicitud, Asunto) VALUES (%s, %s, %s)", (solicitud.idUsuario, solicitud.IdTipoSolicitud, solicitud.Asunto))
             # Commit your changes
             conn.commit()
             
             # Get the number of rows affected
-            print(cursor.rowcount, "Solicitud insertada correctamente en la tabla solicitud")
+            
             
             cursor.close()
         
@@ -121,7 +117,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
                 # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idUsuario' with the provided student ID
-            cursor.execute("SELECT * FROM solicitud WHERE estado <> %s AND idUsuario = %s", ('finalizada', idUsuario))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado <> %s AND asig.IdAsignado = sol.idpersonaAsignada AND usua.id = %s ", ('finalizada',idUsuario))
             results = cursor.fetchall()
             payload = []
                 
@@ -145,7 +141,7 @@ class solicitudController:
                 payload.append(content)
                 
             json_data = jsonable_encoder(payload)            
-            return {"resultado": json_data}
+            return json_data
         
         except mysql.connector.Error as err:
             conn.rollback()
@@ -194,7 +190,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
                 # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idUsuario' with the provided student ID
-            cursor.execute("SELECT * FROM solicitud WHERE estado = %s AND idUsuario = %s", ('finalizada', idUsuario))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado = %s AND asig.IdAsignado = sol.idpersonaAsignada AND usua.id = %s ", ('finalizada',idUsuario))
             results = cursor.fetchall()
             payload = []
                 
@@ -210,7 +206,10 @@ class solicitudController:
                     'FechaCreacion': result[7],
                     'FechaUltimaModificacion': result[8],
                     'estado': result[9],
-                    'prioridad': result[10]
+                    'prioridad': result[10],
+                    'nombre': result[11],
+                    'NombreAsignado': result[12],
+                    'valor': result[13]
                 }
                 payload.append(content)
                 
