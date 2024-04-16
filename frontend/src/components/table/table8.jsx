@@ -17,16 +17,17 @@ const muiCache = createCache({
 
 
 
-function Table2() {
+function Table8() {
 
 
     const [users, setUsers] = useState([]);
 
     var idusuario = parseInt(localStorage.getItem("usuario"));
+
     console.log(idusuario);
-    var get_SolicitudesPendientesPorIdPersona = async (idUsuario) => {
+    var get_Solicitud = async (idUsuario) => {
         try {
-            const users = await axios.get(`${url}/get_SolicitudesPendientesPorIdUsuario/${idUsuario}`);
+            const users = await axios.get(`${url}/get_Solicitud/${idUsuario}`);
             const dato = await users.data;
             console.log(dato);
             console.log("toy dentro");
@@ -39,7 +40,7 @@ function Table2() {
     
     
     useEffect(() => {
-        get_SolicitudesPendientesPorIdPersona(idusuario);
+        get_Solicitud(idusuario);
     }, []);
 
   //tomo informacion de la base de datos y la almaceno en el arreglo 'users'
@@ -88,30 +89,32 @@ function Table2() {
     tableBodyHeight: "300px",
     rowsPerPage: 5,
     };
-    console.log()
+    
     const components = {
     icons: {
         DownloadIcon,
-        ViewColumnIcon,
+        ViewColumnIcon
     }
     };
 
 
     return (
-      <div > 
-          <CacheProvider value={muiCache}>
-          <ThemeProvider theme={createTheme()}>
-          <MUIDataTable
-              title={"Tus Solicitudes Pendientes"}
-              data={users}
-              columns={columns}
-              options={options}
-              components={components}
-          />
-          </ThemeProvider>
-          </CacheProvider>
-      </div>
+    <div > 
+        <CacheProvider value={muiCache}>
+        <ThemeProvider theme={createTheme()}>
+        <MUIDataTable
+            title={"Solicitudes Finalizadas Por Ti"}
+            data={users}
+            columns={columns}
+            options={options}
+            components={components}
+        />
+        </ThemeProvider>
+        </CacheProvider>
+    </div>
+    
+    
     );
 }
 
-export default Table2;
+export default Table8;

@@ -4,7 +4,6 @@ from config.db_config import get_db_connection
 
 from models.soli_model import Creasoli
 from fastapi.encoders import jsonable_encoder
-import uuid
 
 class solicitudController:
     #FUNCION PARA CREAR SOLICITUD
@@ -117,7 +116,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
                 # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idUsuario' with the provided student ID
-            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado <> %s AND asig.IdAsignado = sol.idpersonaAsignada AND usua.id = %s ", ('finalizada',idUsuario))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado = %s AND asig.IdAsignado = sol.idpersonaAsignada AND usua.id = %s ", ('pendiente',idUsuario))
             results = cursor.fetchall()
             payload = []
                 
@@ -148,6 +147,7 @@ class solicitudController:
             print(f"Database error: {err}") # Log the error for debugging
         finally:
             conn.close()
+
     #FUNCION PARA OBTENER TODAS LAS SOLICITUDES FINALIZADAS
     def get_SolicitudesFinalizadas(self):
         try:
@@ -220,6 +220,8 @@ class solicitudController:
             print(f"Database error: {err}") # Log the error for debugging
         finally:
             conn.close()
+    
+    
     #FUNCION PARA OBTENER TODAS LAS SOLICITUDES CON ESTADO "PENDIENTE"
     def get_SolicitudesPendientes(self):
         try:
@@ -256,6 +258,7 @@ class solicitudController:
             conn.rollback()
         finally:
             conn.close()
+    
 
     #FUNCION PARA OBTENER TODAS LAS SOLICITUDES CON ESTADO "SIN ASIGNAR"
     def get_SolicitudesSinAsignar(self):
@@ -298,35 +301,31 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
             cursor.execute(
-                "SELECT * FROM solicitud WHERE idSolicitud = %s", (Solicitud_id,)
+                "SELECT sol.*, usua.nombre, tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado = %s  AND usua.id = %s ", ('sin asignar',Solicitud_id)
             )
-            result = cursor.fetchone()
-            if result is None:
-                raise HTTPException(status_code=404, detail="Solicitud not found")
+            results = cursor.fetchall()
             payload = []
-            content = {}
-
-            content = {
-                "idSolicitud": int(result[0]),
-                "idUsuario": int(result[1]),
-                "IdTipoSolicitud": int(result[2]),
-                "idpersonaAsignada": int(result[3]),
-                "Archivos": result[4],
-                "Asunto": result[5],
-                "nota": result[6],
-                "FechaCreacion": result[7],
-                "FechaUltimaModificacion": result[8],
-                "estado": result[9],
-                "prioridad": result[10]
-            }
-            payload.append(content)
-
-            json_data = jsonable_encoder(content)
-            if result:
-                return json_data
-            else:
-                raise HTTPException(status_code=404, detail="User not found")
-
+            print (results)
+            for result in results:
+                content = {
+                    'idSolicitud': int(result[0]),
+                    'idUsuario': int(result[1]),
+                    'IdTipoSolicitud': int(result[2]),
+                    'idpersonaAsignada': int(result[3]),
+                    'Archivos': result[4],
+                    'Asunto': result[5],
+                    'nota': result[6],
+                    'FechaCreacion': result[7],
+                    'FechaUltimaModificacion': result[8],
+                    'estado': result[9],
+                    'prioridad': result[10],
+                    'nombre': result[11],
+                    'valor': result[12]
+                }
+                payload.append(content)
+                content = {}
+            json_data = jsonable_encoder(payload)            
+            return json_data
         except mysql.connector.Error as err:
             conn.rollback()
         finally:
@@ -359,7 +358,7 @@ class solicitudController:
                 content = {}
             json_data = jsonable_encoder(payload)
             if result:
-                return {"resultado": json_data}
+                return json_data
             else:
                 raise HTTPException(status_code=404, detail="User not found")
 

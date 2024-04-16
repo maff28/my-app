@@ -222,12 +222,12 @@ hr {
 }
 .soli{
   background-color: #6f43c0;
-  padding: 2%;
+  padding: 1%;
   border-radius: 25px;
   border: 2px solid #919191;
 }
 .raya{
-  margin-top: 2%;
+  
   border-bottom: 1px solid #919191;
 }
 .modo{
@@ -235,7 +235,12 @@ hr {
   margin-right: 3%;
 }
 .estado{
-  background-color: rgb(231, 227, 0);
+  background-color: rgb(231, 0, 0);
+  padding: 1.5%;
+  border-radius: 10px;
+}
+.estado2{
+  background-color: rgb(231, 219, 0);
   padding: 1.5%;
   border-radius: 10px;
 }
@@ -292,6 +297,11 @@ hr {
 .ld{
   width: 100%;
   padding: 1%;
+  height: 535px;
+  overflow:auto;
+  scrollbar-color: rgba(255, 255, 255, 0.893) rgba(83, 82, 82, 0.848);
+  scrollbar-width: thin;
+
 }
 .fondox{
   background: rgb(234,232,25);
