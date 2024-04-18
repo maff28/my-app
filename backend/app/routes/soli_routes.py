@@ -11,6 +11,11 @@ async def create_Solicitud(solicitud: Creasoli):
     rpta = nuevo_soli.create_Solicitud(solicitud)
     return rpta
 
+@router.post("/asignarme")
+async def asignarme(solicitud: actualizasoli):
+    rpta = nuevo_soli.asignarme(solicitud)
+    return rpta
+
 @router.get("/get_SolicitudesPendientesPorIdPersonaAsignada/{idpersonaAsignada}")
 async def get_SolicitudesPendientesPorIdPersonaAsignada(idpersonaAsignada:int):
     rpta=nuevo_soli.get_SolicitudesPendientesPorIdPersonaAsignada(idpersonaAsignada)

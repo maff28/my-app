@@ -83,7 +83,7 @@ function Table1() {
   const options = {
     filterType: "dropdown",
     responsive: "vertical",
-    tableBodyHeight: "500px",
+    tableBodyHeight: "380px",
     rowsPerPage: 5,
   };
   console.log()

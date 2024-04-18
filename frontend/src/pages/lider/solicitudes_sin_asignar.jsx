@@ -8,6 +8,8 @@ import Lateral1 from "../../components/navbar/lateral1";
 
 
 export default function Solicitudes_sin_asignar() {
+
+  
   return (
 
       
@@ -20,6 +22,7 @@ export default function Solicitudes_sin_asignar() {
           <Lateral1/>
         </div>
         <div class=" ld ">
+
           <Table3/>
         </div>
         

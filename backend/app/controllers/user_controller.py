@@ -35,7 +35,7 @@ class UserController:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("SELECT usuario, contrasena, id FROM usuario WHERE usuario=%s and contrasena=%s",(loginvar.usuario,loginvar.contrasena))
+            cursor.execute("SELECT usuario, contrasena, id, nombre FROM usuario WHERE usuario=%s and contrasena=%s",(loginvar.usuario,loginvar.contrasena))
             result = cursor.fetchone()
             if result:
                 # Definir el tiempo de expiración del token
@@ -46,6 +46,7 @@ class UserController:
                     'usuario':str(result[0]),
                     'contrasena':str(result[1]),
                     'id':int(result[2]),
+                    'nombre':str(result[3]),
                     'exp': expiration
                 }
                 encoded = jwt.encode(content,SECRET_KEY,algorithm="HS256")

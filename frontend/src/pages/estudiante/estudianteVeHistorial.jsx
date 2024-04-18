@@ -5,7 +5,7 @@ import Table1 from "../../components/table/table1";
 
 export default function EstudianteVeHistorial() {
   return (
-    <div class="fondox">
+    <div class="bg-success">
       <NavbarPrueba2/>
       <div class="todo ">
           <div class=" p-0">

@@ -14,25 +14,22 @@ export function Prueba() {
   useEffect(() => {
     API.get_users().then(setUsers);
   }, []);
-
+  var hoy = new Date();
+  var dia = hoy.getDate();
+  var mes = hoy.getMonth() + 1; 
+  var año = hoy.getFullYear();
+  var fecha = dia+"/"+mes+"/"+año;
+  
   return (
       <div class="">
-
-        <NavbarPrueba/>
-        <div class="row">
-          <div class="col-lg-2 ">
-            <Lateral1/>
-          </div>
-          <div class="col-10">
-            <Table3/>
-            {lista.map((Usuarios) => (
+         {lista.map((Usuarios) => (
               <div key={Usuarios.id}>
                 <h1>nombre: {Usuarios.nombre}</h1>
               </div>
+              
             ))}
-          </div>
-        </div>
-      
+            <h1>{fecha}</h1>
+
         
         
       </div>

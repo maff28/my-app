@@ -65,7 +65,31 @@ export async function i_sesion(usuario,contrasena) {
     console.log(persona);
     console.log(dato);
     localStorage.setItem("usuario", persona.id);
+    localStorage.setItem("Nombre", persona.nombre);
     return dato;
+  } catch (error) {
+    if (error.response && error.response.status === 404){
+      throw new Error(error.response.data.detail);
+    } else { 
+      throw new Error("error al iniciar sesion");
+    }
+  }
+}
+
+export async function asignate(id,idUsuario,nombre,FechaUltimaModificacion) {
+  try {
+    axios({
+      method: "POST",
+      url: `${url}/asignarme/`,
+      data: {
+        id: id,
+        idUsuario: idUsuario,
+        nombre: nombre,
+        FechaUltimaModificacion: FechaUltimaModificacion,
+      },
+    }); 
+    
+    
   } catch (error) {
     if (error.response && error.response.status === 404){
       throw new Error(error.response.data.detail);

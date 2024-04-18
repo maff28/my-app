@@ -17,3 +17,10 @@ class Creasoli(BaseModel):
     idUsuario : int
     IdTipoSolicitud : int
     Asunto : str
+
+class actualizasoli(BaseModel):
+    idUsuario : int
+    id : int
+    nombre: str
+    FechaUltimaModificacion: str
+    

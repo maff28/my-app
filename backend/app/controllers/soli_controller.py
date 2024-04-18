@@ -3,6 +3,7 @@ from fastapi import HTTPException
 from config.db_config import get_db_connection
 
 from models.soli_model import Creasoli
+from models.soli_model import actualizasoli
 from fastapi.encoders import jsonable_encoder
 
 class solicitudController:
@@ -31,7 +32,29 @@ class solicitudController:
                 conn.close()
                 print("MySQL connection is closed")
 
-    
+
+                print("MySQL connection is closed")
+
+
+    def asignarme(self, solicitud:actualizasoli):   
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()  
+            # Prepare the SQL INSERT query with only essential fields
+            cursor.execute("UPDATE solicitud SET idpersonaAsignada = %s, estado='pendiente', FechaUltimaModificacion= %s WHERE idSolicitud = %s",(solicitud.idUsuario,solicitud.FechaUltimaModificacion,solicitud.id))
+            cursor.execute("INSERT INTO asignaciones (IdAsignado,IdSoliciudA,NombreAsignado) VALUES (%s, %s, %s)", (solicitud.idUsuario,solicitud.id,solicitud.nombre))
+            cursor.execute("INSERT INTO respuesta (IDSolicitud,DescripcionRespuesta) VALUES (%s,%s )", (solicitud.id,solicitud.nombre ))
+            # Commit your changes
+            conn.commit()
+            # Get the number of rows affected
+            cursor.close()
+            return "has sido asignado a la solicitud"
+        except mysql.connectorError as error:
+            print("Failed to insert record into solicitud table {}".format(error))
+        finally:
+            if conn.is_connected():
+                conn.close()
+                print("MySQL connection is closed")
     
     
     
@@ -269,7 +292,6 @@ class solicitudController:
             cursor.execute(" SELECT sol.*, usua.nombre,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado like '%sin asignar%' ")
             results = cursor.fetchall()
             payload = []
-            print (results)
             for result in results:
                 content = {
                     'idSolicitud': int(result[0]),

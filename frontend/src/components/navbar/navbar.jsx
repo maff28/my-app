@@ -4,7 +4,7 @@ import {Navbar, Nav, Container, Image} from 'react-bootstrap'
 export default function navbar() {
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" className=" bg-body-tertiary">
+      <Navbar collapseOnSelect expand="lg" className=" bg-body-tertiary ">
       <Container>
       <Image src="../picture/IUB.PNG" className="d-block" fluid/>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

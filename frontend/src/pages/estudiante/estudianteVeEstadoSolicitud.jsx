@@ -69,28 +69,40 @@ export default function EstudianteVeEstadiSolicitud() {
                 <div class=" soli bg-light ">
                     <div class="">
                       <div class="modal-header modo">
-                        <h5 class="modal-title" id="exampleModalLabel">ID de Tu solicitud: {Usuarios.id}</h5>
-                        <h5 class="modal-title" id="exampleModalLabel">Tipo de solicitud: {Usuarios.valor}</h5>
-                        <h5 class="estado2">{Usuarios.estado}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><b>ID de Tu solicitud:</b> {Usuarios.idSolicitud} </h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Tipo de solicitud: </b>{Usuarios.valor}</h5>
+                        <h5 class="estado2 text-light "><b>{Usuarios.estado}</b></h5>
                       </div>
-                      <div class="raya"></div>
-                      
                       <div class="raya"></div>
                       <div class="caja">
                         <div class="modal-body mt-3 modo ">
-                          <h5>Archivo</h5>
+                          <h5><b>Archivo</b></h5>
                           <a class="nav-link " href="#">imgen.jpg</a>
                           
                         </div>
-                        
                         <div class="modal-body mt-3 mb-2 modo ">
-                        <h5>Asunto</h5>
+                        <h5><b>Asunto</b></h5>
                         <p class="">{Usuarios.Asunto}</p>
                        
                       </div>
                       
                       </div>
-                      <b class="ps-4">Fecha de creacion: {Usuarios.FechaCreacion}</b>
+                      <b class="ps-4"><b>Fecha de creacion:</b> {Usuarios.FechaCreacion}</b>
+                      <div class="raya"></div>
+                      <div class="caja">
+                        <div class="modal-body mt-3 modo ">
+                          <h5><b>Persona asignada</b></h5>
+                          <p class="">{Usuarios.NombreAsignado}</p>
+                          
+                        </div>
+                        
+                        <div class="modal-body mt-3 mb-2 modo ">
+                        <h5><b>Respuesta</b></h5>
+                        <p class="">{Usuarios.Asunto}</p>
+                       
+                      </div>
+                      
+                      </div>
                     </div>
                 </div>
                 </div>
@@ -102,22 +114,22 @@ export default function EstudianteVeEstadiSolicitud() {
                 <div class=" soli bg-light ">
                     <div class="">
                       <div class="modal-header modo">
-                        <h5 class="modal-title" id="exampleModalLabel">ID de Tu solicitud: {Usuarios.id}</h5>
-                        <h5 class="modal-title" id="exampleModalLabel">Tipo de solicitud: {Usuarios.valor}</h5>
-                        <h5 class="estado">{Usuarios.estado}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><b>ID de Tu solicitud: </b>{Usuarios.idSolicitud}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Tipo de solicitud: </b>{Usuarios.valor}</h5>
+                        <h5 class="estado text-light"><b>{Usuarios.estado}</b></h5>
                       </div>
                       <div class="raya"></div>
                       
                       <div class="raya"></div>
                       <div class="caja">
                         <div class="modal-body mt-3 modo ">
-                          <h5>Archivo</h5>
+                          <h5><b>Archivo</b></h5>
                           <a class="nav-link " href="#">imgen.jpg</a>
                           
                         </div>
                         
                         <div class="modal-body mt-3 mb-2 modo ">
-                        <h5>Asunto</h5>
+                        <h5><b>Asunto</b></h5>
                         <p class="">{Usuarios.Asunto}</p>
                        
                       </div>
