@@ -308,3 +308,12 @@ hr {
   background: rgb(234,232,25);
   background: linear-gradient(266deg, rgba(234,232,25,0.9332983193277311) 0%, rgba(237,36,26,1) 100%);
 }
+.htext{
+  height: 200px;
+  max-height: 200px;
+}
+.derecha{
+  text-align: right;
+  padding: 3%;
+  
+}

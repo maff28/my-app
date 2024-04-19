@@ -24,3 +24,7 @@ class actualizasoli(BaseModel):
     nombre: str
     FechaUltimaModificacion: str
     
+
+class respuesta(BaseModel):
+    id : int
+    texto: str

@@ -16,6 +16,11 @@ async def asignarme(solicitud: actualizasoli):
     rpta = nuevo_soli.asignarme(solicitud)
     return rpta
 
+@router.post("/responder")
+async def responder(info: respuesta):
+    rpta = nuevo_soli.responder(info)
+    return rpta
+
 @router.get("/get_SolicitudesPendientesPorIdPersonaAsignada/{idpersonaAsignada}")
 async def get_SolicitudesPendientesPorIdPersonaAsignada(idpersonaAsignada:int):
     rpta=nuevo_soli.get_SolicitudesPendientesPorIdPersonaAsignada(idpersonaAsignada)
@@ -59,4 +64,10 @@ async def get_SolicitudesPendientes():
 @router.get("/get_Solicitud/{Solicitud_id}")
 async def get_Solicitud(Solicitud_id: int):
     rpta = nuevo_soli.get_Solicitud(Solicitud_id)
+    return rpta
+
+
+@router.get("/get_soli/{id_soli}")
+async def get_soli(id_soli: int):
+    rpta = nuevo_soli.get_soli(id_soli)
     return rpta

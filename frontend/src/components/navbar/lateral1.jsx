@@ -45,7 +45,7 @@ export default function Lateral1() {
                                     <a class="nav-link text-light" href="/finalizados_por_ti">Tus solicitudes finalizadas</a>
                                 </nav>
                             </div>
-                            <div class="sb-sidenav-menu-heading">Acciones</div>
+                           {/*  <div class="sb-sidenav-menu-heading">Acciones</div>
                             <a class="nav-link text-light" href="charts.html">
                                 <div class="sb-nav-link-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-arrow-down-fill" viewBox="0 0 16 16">
@@ -53,7 +53,7 @@ export default function Lateral1() {
                                     </svg>
                                 </div>
                                 Asignar solicitudes
-                            </a>
+                            </a> */}
                             
                         </div>
                     </div>

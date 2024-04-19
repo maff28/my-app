@@ -98,7 +98,7 @@ export default function EstudianteVeEstadiSolicitud() {
                         
                         <div class="modal-body mt-3 mb-2 modo ">
                         <h5><b>Respuesta</b></h5>
-                        <p class="">{Usuarios.Asunto}</p>
+                        <p class="">{Usuarios.DescripcionRespuesta}</p>
                        
                       </div>
                       

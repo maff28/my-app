@@ -71,9 +71,13 @@ function Table5() {
             name: "estado",
             label:"Estado de la solicitud"
         },
-        {
+        /* {
             name: "prioridad",
             label:"Prioridad",
+        }, */
+        {
+            name: "DescripcionRespuesta",
+            label:"Respuestas",
         },
     ];
 

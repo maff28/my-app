@@ -4,9 +4,38 @@ from config.db_config import get_db_connection
 
 from models.soli_model import Creasoli
 from models.soli_model import actualizasoli
+from models.soli_model import respuesta 
 from fastapi.encoders import jsonable_encoder
 
 class solicitudController:
+
+
+
+    def get_soli(self, id_soli: int):
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM respuesta WHERE IDSolicitud = %s", (id_soli,))
+            result = cursor.fetchone()
+            payload = []
+            content = {} 
+            
+            content={
+
+                'DescripcionRespuesta':result[2]
+            }
+            payload.append(content)
+            
+            json_data = jsonable_encoder(content)            
+            if result:
+                return  json_data
+            else:
+                raise HTTPException(status_code=404, detail="User not found")  
+                
+        except mysql.connector.Error as err:
+            conn.rollback()
+        finally:
+            conn.close()
     #FUNCION PARA CREAR SOLICITUD
     def create_Solicitud(self, solicitud:Creasoli):   
         try:
@@ -43,7 +72,26 @@ class solicitudController:
             # Prepare the SQL INSERT query with only essential fields
             cursor.execute("UPDATE solicitud SET idpersonaAsignada = %s, estado='pendiente', FechaUltimaModificacion= %s WHERE idSolicitud = %s",(solicitud.idUsuario,solicitud.FechaUltimaModificacion,solicitud.id))
             cursor.execute("INSERT INTO asignaciones (IdAsignado,IdSoliciudA,NombreAsignado) VALUES (%s, %s, %s)", (solicitud.idUsuario,solicitud.id,solicitud.nombre))
-            cursor.execute("INSERT INTO respuesta (IDSolicitud,DescripcionRespuesta) VALUES (%s,%s )", (solicitud.id,solicitud.nombre ))
+            cursor.execute("INSERT INTO respuesta (IDSolicitud,DescripcionRespuesta) VALUES (%s,%s )", (solicitud.id,"" ))
+            # Commit your changes
+            conn.commit()
+            # Get the number of rows affected
+            cursor.close()
+            return "has sido asignado a la solicitud"
+        except mysql.connectorError as error:
+            print("Failed to insert record into solicitud table {}".format(error))
+        finally:
+            if conn.is_connected():
+                conn.close()
+                print("MySQL connection is closed")
+
+    
+    def responder(self, info: respuesta):   
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()  
+            # Prepare the SQL INSERT query with only essential fields
+            cursor.execute("UPDATE respuesta SET DescripcionRespuesta = %s WHERE IDSolicitud = %s",(info.texto,info.id))
             # Commit your changes
             conn.commit()
             # Get the number of rows affected
@@ -64,7 +112,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
             # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idPersonaAsignada' with the provided ID
-            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado = %s AND asig.IdAsignado = %s ", ('pendiente',idpersonaAsignada))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor, rpta.DescripcionRespuesta FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud join respuesta rpta on sol.idSolicitud = rpta.IDSolicitud  WHERE sol.estado = %s AND asig.IdAsignado = %s ", ('pendiente',idpersonaAsignada))
             results = cursor.fetchall()
             payload = []
             
@@ -83,7 +131,9 @@ class solicitudController:
                     'prioridad': result[10],
                     'nombre': result[11],
                     'NombreAsignado': result[12],
-                    'valor': result[13]
+                    'valor': result[13],
+                    'DescripcionRespuesta': result[14]
+
                 }
                 payload.append(content)
                 content = {}
@@ -100,7 +150,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
             # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idPersonaAsignada' with the provided ID
-            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado = %s AND asig.IdAsignado = %s ", ('finalizada',idpersonaAsignada))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor, rpta.DescripcionRespuesta FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud join respuesta rpta on sol.idSolicitud = rpta.IDSolicitud  WHERE sol.estado = %s AND asig.IdAsignado = %s ", ('finalizada',idpersonaAsignada))
             results = cursor.fetchall()
             payload = []
             
@@ -119,7 +169,8 @@ class solicitudController:
                     'prioridad': result[10],
                     'nombre': result[11],
                     'NombreAsignado': result[12],
-                    'valor': result[13]
+                    'valor': result[13],
+                    'DescripcionRespuesta': result[14]
                 }
                 payload.append(content)
             
@@ -139,7 +190,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
                 # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idUsuario' with the provided student ID
-            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado = %s AND asig.IdAsignado = sol.idpersonaAsignada AND usua.id = %s ", ('pendiente',idUsuario))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor, rpta.DescripcionRespuesta  FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud join respuesta rpta on sol.idSolicitud = rpta.IDSolicitud WHERE sol.estado = %s AND asig.IdAsignado = sol.idpersonaAsignada AND usua.id = %s ", ('pendiente',idUsuario))
             results = cursor.fetchall()
             payload = []
                 
@@ -158,7 +209,8 @@ class solicitudController:
                     'prioridad': result[10],
                     'nombre': result[11],
                     'NombreAsignado': result[12],
-                    'valor': result[13]
+                    'valor': result[13],
+                    'DescripcionRespuesta': result[14]
                 }
                 payload.append(content)
                 
@@ -177,7 +229,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
                 # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idUsuario' with the provided student ID
-            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado like '%finalizada%' ")
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor, rpta.DescripcionRespuesta FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud join respuesta rpta on sol.idSolicitud = rpta.IDSolicitud WHERE sol.estado like '%finalizada%' ")
             results = cursor.fetchall()
             payload = []
                 
@@ -196,7 +248,8 @@ class solicitudController:
                     'prioridad': result[10],
                     'nombre': result[11],
                     'NombreAsignado': result[12],
-                    'valor': result[13]
+                    'valor': result[13],
+                    'DescripcionRespuesta': result[14]
                 }
                 payload.append(content)
                 
@@ -213,7 +266,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
                 # Modify the query to filter by 'estado' column with the value 'finalizada' and 'idUsuario' with the provided student ID
-            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado = %s AND asig.IdAsignado = sol.idpersonaAsignada AND usua.id = %s ", ('finalizada',idUsuario))
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor, rpta.DescripcionRespuesta FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud join respuesta rpta on sol.idSolicitud = rpta.IDSolicitud WHERE sol.estado = %s AND asig.IdAsignado = sol.idpersonaAsignada AND usua.id = %s ", ('finalizada',idUsuario))
             results = cursor.fetchall()
             payload = []
                 
@@ -232,7 +285,8 @@ class solicitudController:
                     'prioridad': result[10],
                     'nombre': result[11],
                     'NombreAsignado': result[12],
-                    'valor': result[13]
+                    'valor': result[13],
+                    'DescripcionRespuesta': result[14]
                 }
                 payload.append(content)
                 
@@ -251,7 +305,7 @@ class solicitudController:
             conn = get_db_connection()
             cursor = conn.cursor()
             # Modify the query to filter by 'estado' column with the value 'pendiente'
-            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud WHERE sol.estado like '%pendiente%' ")
+            cursor.execute("SELECT sol.*, usua.nombre, asig.NombreAsignado,tp.valor, rpta.DescripcionRespuesta FROM solicitud sol join usuario usua on sol.idUsuario = usua.id join asignaciones asig on sol.idSolicitud = asig.IdSoliciudA join tiposolicitud tp on sol.IdTipoSolicitud = tp.IDTipoSolicitud join respuesta rpta on sol.idSolicitud = rpta.IDSolicitud WHERE sol.estado like '%pendiente%' ")
             results = cursor.fetchall()
             payload = []
             
@@ -270,7 +324,8 @@ class solicitudController:
                     'prioridad': result[10],
                     'nombre': result[11],
                     'NombreAsignado': result[12],
-                    'valor': result[13]
+                    'valor': result[13],
+                    'DescripcionRespuesta': result[14]
                 }
                 payload.append(content)
             
@@ -388,3 +443,5 @@ class solicitudController:
             conn.rollback()
         finally:
             conn.close()
+
+

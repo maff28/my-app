@@ -72,9 +72,13 @@ function Table4() {
       name: "estado",
       label:"Estado de la solicitud"
     },
-    {
+    /* {
       name: "prioridad",
       label:"Prioridad",
+    }, */
+    {
+      name: "DescripcionRespuesta",
+      label:"Respuestas",
     },
   ];
 

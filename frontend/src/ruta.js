@@ -117,3 +117,37 @@ export async function Crea_Solicitud(idUsuario,IdTipoSolicitud,Asunto) {
       return error;
   }
 }
+
+
+export async function consultar_solicitud(id_soli) {
+  try {
+    const user = await axios.get(`${url}/get_soli/${id_soli}`);
+    const response = await user.data.DescripcionRespuesta;
+    console.log(response);
+    console.log("toy dentro");
+    return response
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function responder(id,texto) {
+  try {
+    axios({
+      method: "POST",
+      url: `${url}/responder/`,
+      data: {
+        id: id,
+        texto:texto
+      },
+    }); 
+    
+    alert("Se incerto bien");
+  } catch (error) {
+    if (error.response && error.response.status === 404){
+      throw new Error(error.response.data.detail);
+    } else { 
+      throw new Error("error al iniciar sesion");
+    }
+  }
+}

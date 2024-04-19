@@ -46,10 +46,10 @@ function Table1() {
       label: "ID solicitud",
       
     },
-    {
+    /* {
       name: "nombre",
       label: "Estudiante",
-    },
+    }, */
     {
       name: "valor",
       label:"Tipo Solicitud",
@@ -74,16 +74,20 @@ function Table1() {
       name: "estado",
       label:"Estado de la solicitud"
     },
-    {
+    /* {
       name: "prioridad",
       label:"Prioridad",
+    }, */
+    {
+      name: "DescripcionRespuesta",
+      label:"Respuestas",
     },
   ];
 
   const options = {
     filterType: "dropdown",
     responsive: "vertical",
-    tableBodyHeight: "380px",
+    tableBodyHeight: "468px",
     rowsPerPage: 5,
   };
   console.log()

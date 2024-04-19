@@ -34,7 +34,7 @@ function Table3() {
 
     API.asignate(id,idusuario,nombre,FechaUltimaModificacion);
     alert('hola');
-    /* window.location.href = window.location.href; */
+    window.location.href = window.location.href;
 
   };
 

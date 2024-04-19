@@ -20,16 +20,27 @@ const muiCache = createCache({
 function Table6() {
 
 
-    const   handlerespuesta= () => {
+    const   handlerespuesta= async () => {
         var id = parseInt(document.getElementById("ID").value);
-        var idusuario = parseInt(localStorage.getItem("usuario"));
-        var nombre = localStorage.getItem("Nombre");
-        console.log("El id de la solicitud es :",id);
-        console.log("El id del usuario es :",idusuario);
-        console.log("El nombre de el usuario es :",nombre);
-    
-        API.asignate(id,idusuario,nombre);
-        alert('hola');
+        console.log("El id de la solicitud es :",id)
+        var texto = document.getElementById("floatingTextarea2").value;
+        console.log(texto);
+        
+        var  mostrar = await API.consultar_solicitud(id);
+        var hoy = new Date();
+        var dia = hoy.getDate();
+        var mes = hoy.getMonth() + 1; 
+        var año = hoy.getFullYear();
+        var FechaUltimaModificacion = dia+"/"+mes+"/"+año;
+        var total = mostrar+"\n "+"\n"+texto+"."+FechaUltimaModificacion+"/"
+        console.log(total);
+        var envio = await API.responder(id, total);
+        console.log(envio);
+        
+
+        
+
+        /* API.asignate(id,idusuario); */
         window.location.href = window.location.href;
     
     };
@@ -78,7 +89,7 @@ function Table6() {
         }, */
         {
             name: "Asunto",
-            label:"Asunto",
+            label:" Asunto ",
         },
         {
             name: "FechaCreacion",
@@ -92,9 +103,13 @@ function Table6() {
             name: "estado",
             label:"Estado de la solicitud"
         },
-        {
+        /* {
             name: "prioridad",
             label:"Prioridad",
+        }, */
+        {
+            name: "DescripcionRespuesta",
+            label:"Respuestas",
         },
     ];
 
@@ -116,19 +131,19 @@ function Table6() {
     return (
     <div >
         <button type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Tomar Solicitud
+            Responder solicitud
         </button>
 
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <div class="modal-header  ">
+                    <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Respuesta</h1>
                     <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                    <h5>selecciona el id de la solicitud que deceas tomar</h5>
+                    <div class="modal-body ">
+                    <h5>Selecciona el id de la solicitud que desea responder</h5>
                     <select class="form-select" id="ID" aria-label="Default select example">
                         <option selected></option>
                         {users.map((Usuarios) => (
@@ -137,11 +152,15 @@ function Table6() {
                         </option>
                         ))}
                     </select>
-                    
+                    <h5 class="mt-3">Escribe la respuesta que quieres dar</h5>
+                    <div class="form-floating mt-3 ">
+                        <textarea class="form-control htext" placeholder="Leave a comment here" id="floatingTextarea2"></textarea>
+                        <label for="floatingTextarea2">Comentario</label>
                     </div>
-                    <div class="modal-footer">
+                    </div>
+                    <div class="derecha fondofo">
                     
-                    <button onClick={handlerespuesta} type="button" class="btn btn-primary">Dar respuesta</button>
+                    <button onClick={handlerespuesta} type="button" class="btn btn-success">Dar respuesta</button>
                     </div>
                 </div>
             </div>

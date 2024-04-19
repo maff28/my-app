@@ -56,10 +56,10 @@ function Table7() {
             name: "valor",
             label:"Tipo Solicitud",
         },
-        {
+       /*  {
             name: "NombreAsignado",
             label:"persona Asignada",
-        },
+        }, */
         {
             name: "Asunto",
             label:"Asunto",
@@ -76,9 +76,13 @@ function Table7() {
             name: "estado",
             label:"Estado de la solicitud"
         },
-        {
+        /* {
             name: "prioridad",
             label:"Prioridad",
+        }, */
+        {
+            name: "DescripcionRespuesta",
+            label:"Respuestas",
         },
     ];
 
