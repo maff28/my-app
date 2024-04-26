@@ -25,7 +25,6 @@ function Table6() {
         console.log("El id de la solicitud es :",id)
         var texto = document.getElementById("floatingTextarea2").value;
         console.log(texto);
-        
         var  mostrar = await API.consultar_solicitud(id);
         var hoy = new Date();
         var dia = hoy.getDate();
@@ -34,15 +33,30 @@ function Table6() {
         var FechaUltimaModificacion = dia+"/"+mes+"/"+año;
         var total = mostrar+"\n "+"\n"+texto+"."+FechaUltimaModificacion+"/"
         console.log(total);
-        var envio = await API.responder(id, total);
+        var correo = await API.notificar1(id);
+        console.log(correo);
+        var envio = await API.responder(id, total,correo, FechaUltimaModificacion);
         console.log(envio);
-        
 
-        
-
-        /* API.asignate(id,idusuario); */
+        /* API.asignate(id,idusuario);*/
         window.location.href = window.location.href;
-    
+    };
+    const   Finalizar_caso= async () => {
+        var id = parseInt(document.getElementById("IDFIN").value);
+        console.log("Se finalizará el :",id)
+        
+        var hoy = new Date();
+        var dia = hoy.getDate();
+        var mes = hoy.getMonth() + 1; 
+        var año = hoy.getFullYear();
+        var FechaUltimaModificacion = dia+"/"+mes+"/"+año;
+        var correo = await API.notificar1(id);
+        console.log(correo);
+        var envio = await API.finalizar_solicitud(id,FechaUltimaModificacion,correo);
+        console.log(envio);
+
+        window.location.href = window.location.href;
+
     };
     
 
@@ -130,7 +144,7 @@ function Table6() {
 
     return (
     <div >
-        <button type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Responder solicitud
         </button>
 
@@ -164,7 +178,37 @@ function Table6() {
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
+        <button type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#exampleModa2">
+            Finalizar solicitud
+        </button>
+
+
+        <div class="modal fade" id="exampleModa2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header  ">
+                    <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">Respuesta</h1>
+                    <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+                        <h5>Selecciona el id de la solicitud que deseas finalizar</h5>
+                        <select class="form-select" id="IDFIN" aria-label="Default select example">
+                            <option selected></option>
+                            {users.map((Usuarios) => (
+                                <option key={Usuarios.idSolicitud}>
+                                <option value="{Usuarios.idSolicitud}">{`${Usuarios.idSolicitud}`}</option>
+                            </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div class="derecha bg-success">
+                    
+                        <button onClick={Finalizar_caso} type="button" class="btn btn-outline-light">Finalizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <CacheProvider value={muiCache}>
         <ThemeProvider theme={createTheme()}>
         <MUIDataTable

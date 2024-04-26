@@ -13,9 +13,6 @@ export default function navbar() {
           </Nav>
           <Nav className="h4">
             <Nav.Link href="/home">Inicio</Nav.Link>
-            <Nav.Link href="#Sobre_nosotros">Sobre nosotros</Nav.Link>
-            <Nav.Link href="#Servicios">Servicios</Nav.Link>
-            <Nav.Link href="#Equipo">Equipo</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>

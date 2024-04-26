@@ -19,6 +19,8 @@ export default function Formulario2() {
     console.log(floatingValue);
     console.log(idusuario);
     API.Crea_Solicitud(idusuario,selectedValue,floatingValue);
+    alert('Se Creo tu solicitud')
+    window.location.href = window.location.href;
 
     };
     return (

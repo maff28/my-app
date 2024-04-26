@@ -33,6 +33,11 @@ async def get_user(user_id: int):
     rpta = nuevo_usuario.get_user(user_id)
     return rpta
 
+@router.get("/get_solicitudcorreo/{id_soli}",response_model=User)
+async def get_solicitudcorreo(id_soli: int):
+    rpta = nuevo_usuario.get_solicitudcorreo(id_soli)
+    return rpta
+
 @router.get("/get_users/")
 async def get_users():
     rpta = nuevo_usuario.get_users()

@@ -16,7 +16,7 @@ export async function sesion(user_usuario, user_contrasena, navigate) {
         navigate("/admin");
         break;
       case 2:
-        navigate("/estudiante");
+        navigate("/estudianteCreaSoli");
         break;
       case 3:
         navigate("/lider");

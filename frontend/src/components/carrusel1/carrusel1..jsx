@@ -8,16 +8,16 @@ export default function Carrusel1() {
       <Carousel.Item>
         <Image src="../picture/c2.jpg" className="d-block" fluid/>
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Queremos ayudate a lo antes posible</h3>
+          <p>Mediante solicitudes podemos manejar mejor la informacion</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <Image src="../picture/sede-iub.jpeg" className="d-block" fluid/>
         <Carousel.Caption>
-          <h3>Third slide label</h3>
+          <h3>Recuarda estar atento a las notificaciones</h3>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            Cada que se realize un cambio en tu solicitud te notificara a tu GMAIL
           </p>
         </Carousel.Caption>
       </Carousel.Item>

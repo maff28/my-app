@@ -31,7 +31,7 @@ export default function Parte1() {
                     </div>
                     <div class="col-lg-4 ">
                         <div class="about-img">
-                                <img src="../picture/ladito.png" alt="" class="img-fluid"/>
+                                <img src="../picture/foto3.png" alt="" class="img-fluid"/>
                         </div>
                     </div>
                 </div>

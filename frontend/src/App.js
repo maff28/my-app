@@ -9,6 +9,7 @@ import { ProtectedRoute} from './components/protectedRoute.';
 import EstudianteCreaSoli from './pages/estudiante/estudianteCreaSoli';
 import EstudianteVeEstadiSolicitud from './pages/estudiante/estudianteVeEstadoSolicitud';
 import Lider from './pages/lider/home_lider.jsx';
+import Dashboard from './pages/lider/dashboard.jsx';
 import Solicitudes_sin_asignar from './pages/lider/solicitudes_sin_asignar.jsx';
 import Solicitudes_pendientes from './pages/lider/solicitudes_pendientes.jsx';
 import Solicitudes_finalizadas from './pages/lider/solicitudes_finalizadas.jsx';
@@ -32,6 +33,7 @@ export default function App() {
           <Route path='/estudianteVeEstadoSolicitud' element={<ProtectedRoute><EstudianteVeEstadiSolicitud /></ProtectedRoute>} />
           <Route path='/estudianteVeHistorial' element={<ProtectedRoute><EstudianteVeHistorial/></ProtectedRoute>} />
           <Route path='/Lider' element={<ProtectedRoute><Lider /></ProtectedRoute>} />
+          <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path='/Solicitudes_sin_asignar' element={<ProtectedRoute><Solicitudes_sin_asignar/></ProtectedRoute>} />
           <Route path='/Solicitudes_Pendientes' element={<ProtectedRoute><Solicitudes_pendientes/></ProtectedRoute>} />
           <Route path='/Solicitudes_finalizadas' element={<ProtectedRoute><Solicitudes_finalizadas/></ProtectedRoute>} />

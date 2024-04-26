@@ -23,7 +23,7 @@ export default function Formulario1() {
               <input
                 class="form-control  bg-light"
                 type="text"
-                placeholder="jangelricardo"
+                placeholder="usuario"
                 id="user_usuario"
               />
             </div>
@@ -32,7 +32,7 @@ export default function Formulario1() {
               <input
                 class="form-control bg-light"
                 type="text"
-                placeholder="12345"
+                placeholder="contraseña"
                 id="user_contrasena"
               />
             </div>

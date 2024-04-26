@@ -19,7 +19,7 @@ const muiCache = createCache({
 function Table3() {
 
 
-  const   handlelogin= () => {
+  const   handlelogin= async() => {
     var id = parseInt(document.getElementById("ID").value);
     var idusuario = parseInt(localStorage.getItem("usuario"));
     var nombre = localStorage.getItem("Nombre");
@@ -31,9 +31,10 @@ function Table3() {
     var mes = hoy.getMonth() + 1; 
     var año = hoy.getFullYear();
     var FechaUltimaModificacion = dia+"/"+mes+"/"+año;
-
-    API.asignate(id,idusuario,nombre,FechaUltimaModificacion);
-    alert('hola');
+    var correo = await API.notificar1(id);
+    console.log(correo);
+    API.asignate(id,idusuario,nombre,FechaUltimaModificacion,correo);
+    alert('Haz sido asignado a la solicitud: '+ id);
     window.location.href = window.location.href;
 
   };

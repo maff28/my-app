@@ -76,7 +76,7 @@ export async function i_sesion(usuario,contrasena) {
   }
 }
 
-export async function asignate(id,idUsuario,nombre,FechaUltimaModificacion) {
+export async function asignate(id,idUsuario,nombre,FechaUltimaModificacion,correo) {
   try {
     axios({
       method: "POST",
@@ -86,6 +86,7 @@ export async function asignate(id,idUsuario,nombre,FechaUltimaModificacion) {
         idUsuario: idUsuario,
         nombre: nombre,
         FechaUltimaModificacion: FechaUltimaModificacion,
+        correo:correo
       },
     }); 
     
@@ -102,6 +103,11 @@ export async function asignate(id,idUsuario,nombre,FechaUltimaModificacion) {
 
 export async function Crea_Solicitud(idUsuario,IdTipoSolicitud,Asunto) {
   try {
+    var hoy = new Date();
+    var dia = hoy.getDate();
+    var mes = hoy.getMonth() + 1; 
+    var año = hoy.getFullYear();
+    var FechaCreacion = dia+"/"+mes+"/"+año;
     console.log(idUsuario,IdTipoSolicitud,Asunto);
     axios({
       method: "post",
@@ -109,7 +115,8 @@ export async function Crea_Solicitud(idUsuario,IdTipoSolicitud,Asunto) {
       data: {
         idUsuario: idUsuario,
         IdTipoSolicitud: IdTipoSolicitud,
-        Asunto: Asunto
+        Asunto: Asunto,
+        FechaCreacion: FechaCreacion
       },
       
     });
@@ -131,18 +138,52 @@ export async function consultar_solicitud(id_soli) {
   }
 }
 
-export async function responder(id,texto) {
+export async function responder(id,texto,correo,FechaUltimaModificacion) {
   try {
     axios({
       method: "POST",
       url: `${url}/responder/`,
       data: {
         id: id,
-        texto:texto
+        texto: texto,
+        correo: correo,
+        FechaUltimaModificacion: FechaUltimaModificacion
       },
     }); 
-    
-    alert("Se incerto bien");
+    return "respuesta"
+  } catch (error) {
+    if (error.response && error.response.status === 404){
+      throw new Error(error.response.data.detail);
+    } else { 
+      throw new Error("error al responder");
+    }
+  }
+}
+
+export async function notificar1(id_soli) {
+  try {
+    var id= parseInt(id_soli)
+    const usuario = await axios.get(`${url}/get_solicitudcorreo/${id}`);
+    const response = usuario.data.correo;
+    return response
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+export async function finalizar_solicitud(id,fecha,correo) {
+  try {
+    axios({
+      method: "POST",
+      url: `${url}/finalizar_solicitud/`,
+      data: {
+        id: id,
+        fecha: fecha,
+        correo: correo
+      },
+    }); 
+    return "se mando la informacion";
   } catch (error) {
     if (error.response && error.response.status === 404){
       throw new Error(error.response.data.detail);

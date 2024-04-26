@@ -108,7 +108,41 @@ class UserController:
                     'nombre':result[4],
                     'apellido':result[5],
                     'documento':result[6],
-                    'teléfono':result[7]
+                    'teléfono':result[7],
+                    'correo':result[8]
+            }
+            payload.append(content)
+            
+            json_data = jsonable_encoder(content)            
+            if result:
+                return  json_data
+            else:
+                raise HTTPException(status_code=404, detail="User not found")  
+                
+        except mysql.connector.Error as err:
+            conn.rollback()
+        finally:
+            conn.close()
+
+    def get_solicitudcorreo(self, user_id: int):
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT usua.* FROM solicitud sol join usuario usua on sol.idUsuario = usua.id WHERE sol.idSolicitud = %s", (user_id,))
+            result = cursor.fetchone()
+            payload = []
+            content = {} 
+            
+            content={
+                    'id':int(result[0]),
+                    'IdArea':int(result[1]),
+                    'usuario':result[2],
+                    'contrasena':result[3],
+                    'nombre':result[4],
+                    'apellido':result[5],
+                    'documento':result[6],
+                    'teléfono':result[7],
+                    'correo':result[8]
             }
             payload.append(content)
             

@@ -10,6 +10,7 @@ class User(BaseModel):
     apellido: str
     documento: str
     teléfono: str
+    correo: str
     
 #  modelo para el login 
 class userdb(BaseModel):

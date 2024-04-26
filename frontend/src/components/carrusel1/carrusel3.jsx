@@ -6,18 +6,18 @@ export default function Carrusel3() {
     <>
       <Carousel>
       <Carousel.Item>
-        <Image src="../picture/carrusel-3.jpg" className="d-block" fluid/>
+        <Image src="../picture/carrusel-9.jpg" className="d-block" fluid/>
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Estamos aui para ayudar a uestros estudiantes</h3>
+          <p>Los lideres academicos ahora pueden responder solicitudes en el menor tiempo posible</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <Image src="../picture/carrusel-4.jpg" className="d-block" fluid/>
         <Carousel.Caption>
-          <h3>First slide label</h3>
+          <h3>Tienes un historial de solicitudes</h3>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            esto te ayudará a llevar una trasabilidad de las solicitudes que haz solucionado
           </p>
         </Carousel.Caption>
       </Carousel.Item>

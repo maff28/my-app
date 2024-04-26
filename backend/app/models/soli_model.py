@@ -17,14 +17,22 @@ class Creasoli(BaseModel):
     idUsuario : int
     IdTipoSolicitud : int
     Asunto : str
+    FechaCreacion: str
 
 class actualizasoli(BaseModel):
     idUsuario : int
     id : int
     nombre: str
     FechaUltimaModificacion: str
-    
+    correo: str
 
 class respuesta(BaseModel):
     id : int
     texto: str
+    correo: str
+    FechaUltimaModificacion: str
+    
+class Estado(BaseModel):
+    id : int
+    fecha: str
+    correo: str
