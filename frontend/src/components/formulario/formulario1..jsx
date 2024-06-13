@@ -31,7 +31,7 @@ export default function Formulario1() {
               <label class="form-label text-light">Contraseña</label>
               <input
                 class="form-control bg-light"
-                type="text"
+                type="password"
                 placeholder="contraseña"
                 id="user_contrasena"
               />

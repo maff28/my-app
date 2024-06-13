@@ -1,17 +1,19 @@
 
 import Footer1 from "../../components/footer/footer";
 import NavbarPrueba from "../../components/navbar/navbarprueba";
-import Lateral1 from "../../components/navbar/lateral1";
+import Lateral3 from "../../components/navbar/lateral3";
 import Carrusel3 from "../../components/carrusel1/carrusel3";
 
 export default function Lider() {
+
+  
   return (
     <>
       <NavbarPrueba/>
       <div class="todo">
         
         <div class=" p-0 lr">
-          <Lateral1/>
+          <Lateral3/>
         </div>
         <div class=" p-2">
           <Carrusel3/>

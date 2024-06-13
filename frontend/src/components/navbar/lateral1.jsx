@@ -55,6 +55,7 @@ export default function Lateral1() {
                                 Asignar solicitudes
                             </a> */}
                             
+                            
                         </div>
                     </div>
                 </nav>

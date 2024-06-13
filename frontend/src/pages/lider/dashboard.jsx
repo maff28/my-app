@@ -2,16 +2,17 @@ import Footer1 from "../../components/footer/footer";
 import NavbarPrueba from "../../components/navbar/navbarprueba";
 import Lateral1 from "../../components/navbar/lateral1";
 import LinesChart from "../../components/graficos/grafico1";
+import Lateral3 from "../../components/navbar/lateral3";
 
 
 export default function Dashboard() {
   return (
     <>
       <NavbarPrueba/>
-      <div class="todo">
+      <div class="todo ">
         
         <div class=" p-0 lr">
-          <Lateral1/>
+          <Lateral3/>
         </div>
         <div class=" p-5">
           <div class="row">

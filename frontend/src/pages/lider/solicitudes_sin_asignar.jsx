@@ -4,7 +4,7 @@ import Footer1 from "../../components/footer/footer";
 
 import Table3 from "../../components/table/tabla3";
 import NavbarPrueba from "../../components/navbar/navbarprueba";
-import Lateral1 from "../../components/navbar/lateral1";
+import Lateral3 from "../../components/navbar/lateral3";
 
 
 export default function Solicitudes_sin_asignar() {
@@ -16,10 +16,10 @@ export default function Solicitudes_sin_asignar() {
 
       <>
         <NavbarPrueba/>
-      <div class="todo bg-danger">
+      <div class="todo fondoZ3">
         
         <div class=" p-0 lr">
-          <Lateral1/>
+          <Lateral3/>
         </div>
         <div class=" ld ">
 

@@ -35,7 +35,7 @@ class UserController:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("SELECT usuario, contrasena, id, nombre FROM usuario WHERE usuario=%s and contrasena=%s",(loginvar.usuario,loginvar.contrasena))
+            cursor.execute("SELECT usuario.usuario, usuario.contrasena, usuario.id, usuario.nombre, rolxusuario.IdRol FROM usuario join rolxusuario on usuario.id = rolxusuario.IdXUsuario WHERE usuario=%s and contrasena=%s",(loginvar.usuario,loginvar.contrasena))
             result = cursor.fetchone()
             if result:
                 # Definir el tiempo de expiración del token
@@ -47,6 +47,7 @@ class UserController:
                     'contrasena':str(result[1]),
                     'id':int(result[2]),
                     'nombre':str(result[3]),
+                    'rol':int(result[4]),
                     'exp': expiration
                 }
                 encoded = jwt.encode(content,SECRET_KEY,algorithm="HS256")
@@ -156,7 +157,32 @@ class UserController:
             conn.rollback()
         finally:
             conn.close()
-           
+
+    def get_modulos(self, id_rol: int):
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT idmodulo,detalle,modulo FROM rolxmodulo join modulos on rolxmodulo.idmodulo= modulos.id WHERE idrol = %s", (id_rol,))
+            results = cursor.fetchall()
+            payload = []
+            i=1
+            for data in results:
+                content = {
+                    'modulo':int(data[0]),
+                    'detalle':data[1],
+                    'modulos':data[2]
+
+                }
+                i=i+1
+                payload.append(content)
+                content = {}
+            json_data = jsonable_encoder(payload)            
+            return json_data          
+        except mysql.connector.Error as err:
+            conn.rollback()
+            print(f"Database errorr: {err}") # Log the error for debugging
+        finally:
+            conn.close()
     def get_users(self):
         try:
             conn = get_db_connection()
@@ -180,7 +206,7 @@ class UserController:
                 content = {}
             json_data = jsonable_encoder(payload)        
             if result:
-               return {"resultado": json_data}
+                return {"resultado": json_data}
             else:
                 raise HTTPException(status_code=404, detail="User not found")  
                 

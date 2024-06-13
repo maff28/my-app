@@ -5,6 +5,7 @@ import Table2 from "../../components/table/table2";
 import Table8 from "../../components/table/table8";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Lateral3 from "../../components/navbar/lateral3";
 const url = "http://127.0.0.1:8000";
 
 
@@ -56,11 +57,11 @@ export default function EstudianteVeEstadiSolicitud() {
         get_Solicitud(idusuario);
     }, []);
   return (
-    <div class="fondox">
+    <div class="fondoZ2">
       <NavbarPrueba2/>
       <div class="todo ">
           <div class=" p-0">
-            <Lateral2/>
+            <Lateral3/>
           </div>
           <div class=" ld " >
           {userss.map((Usuarios) => (

@@ -253,6 +253,14 @@ hr {
 .fondoZ{
   background-image: linear-gradient(to top , rgb(39, 97, 212), rgb(255, 255, 255));
 }
+.fondoZ2{
+  background: rgb(40,126,221);
+background: linear-gradient(0deg, rgb(12, 105, 204) 0%, rgba(40,126,221,0.17699579831932777) 50%, rgb(15, 113, 218) 100%);
+}
+.fondoZ3{
+  background: rgb(255,255,255);
+background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(18,107,223,1) 48%, rgba(255,255,255,0.7540266106442577) 100%);
+}
 .celda{
   
   display: flex;

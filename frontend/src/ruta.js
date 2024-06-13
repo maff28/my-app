@@ -66,6 +66,7 @@ export async function i_sesion(usuario,contrasena) {
     console.log(dato);
     localStorage.setItem("usuario", persona.id);
     localStorage.setItem("Nombre", persona.nombre);
+    localStorage.setItem("Rol", persona.rol);
     return dato;
   } catch (error) {
     if (error.response && error.response.status === 404){

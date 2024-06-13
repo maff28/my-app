@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from controllers.user_controller import *
 from models.user_model import User
 
+
 router = APIRouter()
 
 nuevo_usuario = UserController()
@@ -36,6 +37,11 @@ async def get_user(user_id: int):
 @router.get("/get_solicitudcorreo/{id_soli}",response_model=User)
 async def get_solicitudcorreo(id_soli: int):
     rpta = nuevo_usuario.get_solicitudcorreo(id_soli)
+    return rpta
+
+@router.get("/get_modulos/{id_rol}")
+async def get_modulos(id_rol: int):
+    rpta = nuevo_usuario.get_modulos(id_rol)
     return rpta
 
 @router.get("/get_users/")

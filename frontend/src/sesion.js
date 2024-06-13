@@ -13,7 +13,7 @@ export async function sesion(user_usuario, user_contrasena, navigate) {
     console.log(Rol);
     switch (Rol){
       case 1: 
-        navigate("/admin");
+        navigate("/lider");
         break;
       case 2:
         navigate("/estudianteCreaSoli");
@@ -45,5 +45,16 @@ export async function decode_token() {
 export async function cerrar_sesion() {
   localStorage.removeItem("usuario");
   localStorage.removeItem("token");
+  localStorage.removeItem("Nombre");
+  localStorage.removeItem("Rol");
+  localStorage.removeItem("modulo1");
+  localStorage.removeItem("modulo2");
+  localStorage.removeItem("modulo3");
+  localStorage.removeItem("modulo4");
+  localStorage.removeItem("modulo5");
+  localStorage.removeItem("modulo6");
+  localStorage.removeItem("modulo7");
+  localStorage.removeItem("modulo8");
+  localStorage.removeItem("modulo9");
   window.location.href = "/login";
 }
