@@ -16,6 +16,7 @@ import Solicitudes_finalizadas from './pages/lider/solicitudes_finalizadas.jsx';
 import Asignado_a_ti from './pages/lider/asignado_a_ti.jsx';
 import Finalizados_por_ti from './pages/lider/finalizados_por_ti.jsx';
 import EstudianteVeHistorial from './pages/estudiante/estudianteVeHistorial.jsx';
+import Ver_usuarios from './pages/administrador/ver_usuarios.jsx';
 
 
 
@@ -38,6 +39,7 @@ export default function App() {
           <Route path='/Solicitudes_Pendientes' element={<ProtectedRoute><Solicitudes_pendientes/></ProtectedRoute>} />
           <Route path='/Solicitudes_finalizadas' element={<ProtectedRoute><Solicitudes_finalizadas/></ProtectedRoute>} />
           <Route path='/asignado_a_ti' element={<ProtectedRoute><Asignado_a_ti/></ProtectedRoute>} />
+          <Route path='/ver_usuarios' element={<ProtectedRoute><Ver_usuarios/></ProtectedRoute>} />
           <Route path='/finalizados_por_ti' element={<ProtectedRoute><Finalizados_por_ti/></ProtectedRoute>} />
           <Route path='/prueba' element={<Prueba/>} />
           <Route path='*' element={<NoPage/>} />

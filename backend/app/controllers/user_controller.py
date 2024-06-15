@@ -19,7 +19,7 @@ class UserController:
             conn = get_db_connection()
             cursor = conn.cursor()
             print("prueba1")
-            cursor.execute("INSERT INTO usuario (IdArea,usuario,contrasena,nombre,apellido,documento,teléfono) VALUES (%s, %s, %s, %s, %s, %s, %s)", (user.IdArea, user.usuario, user.contrasena, user.nombre, user.apellido, user.documento, user.teléfono))
+            cursor.execute("INSERT INTO usuario (IdArea,usuario,contrasena,nombre,apellido,documento,teléfono,correo) VALUES ( %s,%s, %s, %s, %s, %s, %s,%s)", (user.IdArea, user.usuario, user.contrasena, user.nombre, user.apellido, user.documento, user.telefono, user.correo))
             print("prueba2")
             conn.commit()
             conn.close()

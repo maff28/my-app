@@ -5,7 +5,7 @@ export default function NavbarPrueba() {
   return (
     <>
          <nav class="sb-topnav navbar navbar-expand navbar-light  ">
-            <a class="navbar-brand ps-4">Lider</a>
+            <a class="navbar-brand ps-4">Admin</a>
             
             <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                
