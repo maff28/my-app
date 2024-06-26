@@ -10,6 +10,10 @@ nuevo_rol = RolController()
 async def get_Roles():
     rpta = nuevo_rol.get_Roles()
     return rpta
+@router.get("/get_ModulosxRoles")
+async def get_ModulosxRoles():
+    rpta = nuevo_rol.get_ModulosxRoles()
+    return rpta
 
 @router.get("/get_Rol/{Rol_id}",response_model=Rol)
 async def get_Rol(Rol_id: int):

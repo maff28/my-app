@@ -44,7 +44,7 @@ export default function Ver_roles() {
 
   const get_SolicitudesSinAsignarr = async () => {
     try {
-      const users = await axios.get(`${url}/get_users`);
+      const users = await axios.get(`${url}/get_ModulosxRoles`);
       const dato = await users.data.resultado;
       console.log(dato);
       console.log("toy dentro");
@@ -62,13 +62,84 @@ export default function Ver_roles() {
 
       <>
         <NavbarPrueba/>
-      <div class="todo fondoZ3">
+      <div class="todo fondoZ2">
         
         <div class=" p-0 lr">
           <Lateral3/>
         </div>
         <div class=" ld ">
-          
+          <div class="row">
+            <div class="col-4">
+                <div class="card carta1">
+                  
+                <div class="card-body">
+                  <h5 class="card-title">Administrador</h5>
+                  <p class="card-text">administrador del software</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Crear solicitud</li>
+                  <li class="list-group-item">A second item</li>
+                  <li class="list-group-item">A third item</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+                </div>
+            </div>
+            <div class="col-4">
+            <div class="card carta1">
+                  
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">An item</li>
+                  <li class="list-group-item">A second item</li>
+                  <li class="list-group-item">A third item</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card carta1">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">An item</li>
+                  <li class="list-group-item">A second item</li>
+                  <li class="list-group-item">A third item</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card carta1">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">An item</li>
+                  <li class="list-group-item">A second item</li>
+                  <li class="list-group-item">A third item</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+                </div>
+            </div>
+          </div>
         </div>
         
       </div>
