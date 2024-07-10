@@ -37,7 +37,7 @@ class RolController:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("SELECT NombreRol,DescripcionRol,modulo FROM rol join rolxmodulo on rol.IdRol= rolxmodulo.idrol join modulos on rolxmodulo.idrol= modulos.id ")
+            cursor.execute("SELECT NombreRol,DescripcionRol,modulo FROM rol join rolxmodulo on rol.IdRol= rolxmodulo.idrol join modulos on rolxmodulo.idmodulo= modulos.id ")
             result = cursor.fetchall()
             payload = []
             content = {} 
